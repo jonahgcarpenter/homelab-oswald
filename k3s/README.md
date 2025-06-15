@@ -110,9 +110,10 @@ kubectl expose deployment nginx --namespace nginx --port=80 --type=LoadBalancer 
 
 ssh-copy-id <username>@<ip>
 
-### Edit ssh config
+### Edit ssh config files
 
 sudo nano /etc/ssh/sshd_config
+sudo nano /etc/ssh/sshd_config/50-cloud-init.conf
 
 ### Edit the line:
 
