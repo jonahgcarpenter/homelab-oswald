@@ -12,6 +12,7 @@ spec:
       services:
         - name: dashboard
           namespace: wazuh
-          port: 5601
+          port: 443
+          scheme: https
   tls:
     secretName: wazuh-certificate-secret
