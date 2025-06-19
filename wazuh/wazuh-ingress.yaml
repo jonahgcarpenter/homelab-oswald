@@ -1,0 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: wazuh-ui-ingress
+  namespace: wazuh
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`wazuh.home.jonahsserver.com`)
+      kind: Rule
+      services:
+        - name: dashboard
+          namespace: wazuh
+          port: 5601
+  tls:
+    secretName: wazuh-certificate-secret
