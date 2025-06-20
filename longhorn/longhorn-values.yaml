@@ -1,2 +1,6 @@
+defaultSettings:
+  backupTarget: "cifs://192.168.4.110/k3s-backups"
+  backupTargetCredentialSecret: "smb-credential-secret"
+
 longhornUI:
   replicas: 1
