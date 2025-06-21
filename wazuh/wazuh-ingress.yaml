@@ -14,5 +14,6 @@ spec:
           namespace: wazuh
           port: 443
           scheme: https
+          serversTransport: wazuh-insecure-transport
   tls:
     secretName: wazuh-certificate-secret

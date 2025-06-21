@@ -1,0 +1,9 @@
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: wazuh-insecure-transport
+  namespace: wazuh
+spec:
+  # This tells Traefik to not verify the certificate
+  # presented by the backend Wazuh service.
+  insecureSkipVerify: true
