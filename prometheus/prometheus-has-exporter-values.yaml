@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: exporter-has
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  staticConfigs:
+    - targets:
+        - 192.168.4.52:9100
+  metricsPath: /metrics
