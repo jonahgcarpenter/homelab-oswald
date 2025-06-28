@@ -2,5 +2,5 @@
 
 ## [TODO](https://github.com/stars/jonahgcarpenter/lists/homelab-todo):
 
-    -   Add other servers to grafana
-    -   HAS wazuh-agent?
+    -   HAS prometheus exporter?
+    -   migrate non-hardware dependant lxc containers to k3s
