@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: exporter-proxmox
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  staticConfigs:
+    - targets:
+        - exporter-proxmox.monitoring.svc.cluster.local:9221
+  metricsPath: /pve
+  params:
+    target:
+      - 192.168.4.86

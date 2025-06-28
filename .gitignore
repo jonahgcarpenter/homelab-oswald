@@ -1,2 +1,5 @@
+# Block any file with the ending "secret.yaml"
+*secret.yaml
+
 cert-manager/cert-manager-issuer-secret.yaml
-wazuh-kubernetes/
+prometheus/prometheus-pve-exporter-api-token-secret.yaml
