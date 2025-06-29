@@ -1,8 +1,10 @@
-# My Homelab config
+# Project Oswald (aka Homelab)
 
 ## Todo
 
-### [Add List](https://github.com/stars/jonahgcarpenter/lists/homelab-todo):
+### [Add List](https://github.com/stars/jonahgcarpenter/lists/homelab-todo)
+
+### Problems:
 
 - HAS grafana dashboard for prometheus
 - migrate authelia, DDNS, vaultwarden, wiregaurd to k3s
