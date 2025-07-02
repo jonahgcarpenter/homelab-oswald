@@ -1,5 +1,7 @@
 # Project Oswald (aka Homelab)
 
+![IMG_3768](https://github.com/user-attachments/assets/f35d5403-bbf1-43b6-9aeb-457df8ff4204)
+
 ## Todo
 
 ### [Add List](https://github.com/stars/jonahgcarpenter/lists/homelab-todo)
