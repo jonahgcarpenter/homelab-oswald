@@ -8,7 +8,8 @@
 
 ### Problems:
 
-- HAS grafana dashboard for prometheus
+- HAS grafana dashboard
+- Alert manager MQTT
 - migrate authelia, DDNS, vaultwarden, wiregaurd to k3s
 - ingress routes for external servers
 - decrease Mini PC iGPU Ram
