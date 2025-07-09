@@ -1,3 +1,2 @@
 # Block any file with the ending "secret.yaml"
 *secret.yaml
-!./homepage/secret.yaml
