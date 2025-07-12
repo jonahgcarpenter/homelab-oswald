@@ -2,7 +2,6 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: exporter-proxmox
-  namespace: monitoring
   labels:
     app: exporter-proxmox
 spec:
