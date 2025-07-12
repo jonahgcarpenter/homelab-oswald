@@ -1,0 +1,11 @@
+# helm install longhorn longhorn/longhorn \
+# --namespace longhorn-system \
+# --create-namespace \
+# -f values.yaml
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: longhorn-system
+resources:
+  - ingress.yaml
+  - smb-secret.yaml
