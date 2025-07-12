@@ -28,6 +28,71 @@ spec:
           env:
             - name: HOMEPAGE_ALLOWED_HOSTS
               value: homepage.home.jonahsserver.com
+            - name: HOMEPAGE_VAR_HAS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: HAS_URL
+            - name: HOMEPAGE_VAR_PROXMOX_PVE1_URL
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: PROXMOX_PVE1_URL
+            - name: HOMEPAGE_VAR_PROXMOX_PVE2_URL
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: PROXMOX_PVE2_URL
+            - name: HOMEPAGE_VAR_PROXMOX_PVE3_URL
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: PROXMOX_PVE3_URL
+            - name: HOMEPAGE_VAR_PROXMOX_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: PROXMOX_API_TOKEN
+            - name: HOMEPAGE_VAR_PROXMOX_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: PROXMOX_USERNAME
+            - name: HOMEPAGE_VAR_PIHOLE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: PIHOLE_PASSWORD
+            - name: HOMEPAGE_VAR_NPM_URL
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: NPM_URL
+            - name: HOMEPAGE_VAR_NPM_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: NPM_USERNAME
+            - name: HOMEPAGE_VAR_NPM_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: NPM_PASSWORD
+            - name: HOMEPAGE_VAR_PORTAINER_URL
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: PORTAINER_URL
+            - name: HOMEPAGE_VAR_PORTAINER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: PORTAINER_API_KEY
+            - name: HOMEPAGE_VAR_MINECRAFT_URL_VANILLA
+              valueFrom:
+                secretKeyRef:
+                  name: homepage-secrets
+                  key: MINECRAFT_URL_VANILLA
           ports:
             - name: http
               containerPort: 3000

@@ -7,7 +7,12 @@ metadata:
 data:
   kubernetes.yaml: |
     mode: cluster
-  settings.yaml: ""
+  settings.yaml: |
+    color: zinc
+    theme: dark
+    providers:
+      longhorn:
+        url: http://longhorn-frontend.longhorn-system
   custom.css: ""
   custom.js: ""
   bookmarks.yaml: |
@@ -28,7 +33,7 @@ data:
     - IoT & Smarthome:
         - Home Assistant:
             icon: home-assistant.png
-            href: https://has.jonahsserver.com
+            href: {{HOMEPAGE_VAR_HAS_URL}}
         - Homebridge:
             icon: homebridge.png
             href: https://homebridge.home.jonahsserver.com
@@ -37,12 +42,33 @@ data:
         - PVE-1:
             icon: proxmox.png
             href: https://pve-1.home.jonahsserver.com/
+            widget:
+              type: proxmox
+              url: {{HOMEPAGE_VAR_PROXMOX_PVE1_URL}}
+              username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}"
+              password: "{{HOMEPAGE_VAR_PROXMOX_API_TOKEN}}"
+              node: pve-1
+              fields: ["vms", "lxc", "resources.cpu", "resources.mem"]
         - PVE-2:
             icon: proxmox.png
             href: https://pve-2.home.jonahsserver.com/
+            widget:
+              type: proxmox
+              url: {{HOMEPAGE_VAR_PROXMOX_PVE2_URL}}
+              username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}"
+              password: "{{HOMEPAGE_VAR_PROXMOX_API_TOKEN}}"
+              node: pve-2
+              fields: ["vms", "lxc", "resources.cpu", "resources.mem"]
         - PVE-3:
             icon: proxmox.png
             href: https://pve-3.home.jonahsserver.com/
+            widget:
+              type: proxmox
+              url: {{HOMEPAGE_VAR_PROXMOX_PVE3_URL}}
+              username: "{{HOMEPAGE_VAR_PROXMOX_USERNAME}}"
+              password: "{{HOMEPAGE_VAR_PROXMOX_API_TOKEN}}"
+              node: pve-3
+              fields: ["vms", "lxc", "resources.cpu", "resources.mem"]
         - TrueNAS:
             icon: truenas.png
             href: https://truenas.home.jonahsserver.com/
@@ -54,9 +80,21 @@ data:
         - PiHole:
             icon: pi-hole.png
             href: https://pihole.home.jonahsserver.com/
+            widget:
+              type: pihole
+              url: http://pihole-web.pihole
+              version: 6
+              key: {{HOMEPAGE_VAR_PIHOLE_PASSWORD}}
+              fields: ["queries", "blocked", "blocked_percent", "gravity"]
         - NPM:
             icon: nginx-proxy-manager.png
             href: https://npm.home.jonahsserver.com/
+            widget:
+              type: npm
+              url: {{HOMEPAGE_VAR_NPM_URL}}
+              username: {{HOMEPAGE_VAR_NPM_USERNAME}}
+              password: {{HOMEPAGE_VAR_NPM_PASSWORD}}
+              fields: ["enabled", "disabled", "total"]
         - Wireguard:
             icon: wireguard.png
             href: https://wg.home.jonahsserver.com/
@@ -68,9 +106,19 @@ data:
         - Portainer:
             icon: portainer.png
             href: https://portainer.home.jonahsserver.com/
+            widget:
+              type: portainer
+              url: {{HOMEPAGE_VAR_PORTAINER_URL}}
+              env: 3
+              key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
+              fields: ["running", "stopped", "total"]
         - Crafty Controller:
             icon: minecraft.png
             href: https://crafty.home.jonahsserver.com/
+            widget:
+              type: minecraft
+              url: {{HOMEPAGE_VAR_MINECRAFT_URL_VANILLA}}
+              fields: ["players", "version", "status"]
 
     - AI:
         - OpenWebUI:
@@ -103,6 +151,15 @@ data:
         cpu: true
         memory: true
         network: default
+    - longhorn:
+        expanded: true
+        total: true
+        labels: true
+        nodes: true
+        include:
+          - node1
+          - node2
+          - node3
     - search:
         provider: google
         target: _blank
