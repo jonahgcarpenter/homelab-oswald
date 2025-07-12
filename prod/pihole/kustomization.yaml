@@ -8,5 +8,5 @@ kind: Kustomization
 namespace: pihole
 resources:
   - ingress.yaml
-  - login-secret.yaml
+  #  - login-secret.yaml
   - volume.yaml

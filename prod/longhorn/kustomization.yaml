@@ -8,4 +8,4 @@ kind: Kustomization
 namespace: longhorn-system
 resources:
   - ingress.yaml
-  - smb-secret.yaml
+#  - smb-secret.yaml

@@ -8,5 +8,5 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - ingress.yaml
-  - login-secret.yaml
+  #  - login-secret.yaml
   - pve-dashboard.yaml
