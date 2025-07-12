@@ -1,3 +1,7 @@
 # Block any file with the ending "secret.yaml"
 *secret.yaml
 *secrets.yaml
+
+# Keys for FluxCD
+flux-ssh-key
+flux-ssh-key.pub
