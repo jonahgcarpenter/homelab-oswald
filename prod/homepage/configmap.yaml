@@ -112,12 +112,21 @@ data:
               env: 3
               key: {{HOMEPAGE_VAR_PORTAINER_API_KEY}}
               fields: ["running", "stopped", "total"]
-        - Crafty Controller:
+
+    - Minecraft:
+        - Vanilla:
             icon: minecraft.png
             href: https://crafty.home.jonahsserver.com/
             widget:
               type: minecraft
               url: {{HOMEPAGE_VAR_MINECRAFT_URL_VANILLA}}
+              fields: ["players", "version", "status"]
+        - Modded:
+            icon: minecraft.png
+            href: https://crafty.home.jonahsserver.com/
+            widget:
+              type: minecraft
+              url: {{HOMEPAGE_VAR_MINECRAFT_URL_MODDED}}
               fields: ["players", "version", "status"]
 
     - AI:
