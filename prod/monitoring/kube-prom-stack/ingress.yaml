@@ -9,7 +9,7 @@ spec:
     - match: Host(`grafana.home.jonahsserver.com`)
       kind: Rule
       services:
-        - name: prometheus-grafana
+        - name: kube-prometheus-stack-grafana
           namespace: monitoring
           port: 80
   tls:
