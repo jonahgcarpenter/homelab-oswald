@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: longhorn
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: longhorn
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn
+        namespace: flux-system
+      version: "1.9.0"
+  values:
+    defaultSettings:
+      backupTarget: "cifs://192.168.4.110/k3s-backups"
+      backupTargetCredentialSecret: "smb-credential-secret"
+
+    longhornUI:
+      replicas: 1

@@ -5,3 +5,5 @@ resources:
   - cert-manager-repo.yaml
   - traefik-repo.yaml
   - kube-prom-stack-repo.yaml
+  - longhorn-repo.yaml
+  - pihole-repo.yaml
