@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitoring
+resources:
+  - pve-deployment.yaml
+  - pve-service.yaml
+  - pve-values.yaml
+  # pve-api-token-secret.yaml
+  - has-values.yaml

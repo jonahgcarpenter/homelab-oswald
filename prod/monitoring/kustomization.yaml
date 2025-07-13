@@ -1,14 +1,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: monitoring
 resources:
-  - ./kube-prom-stack/namespace.yaml
-  - ./kube-prom-stack/release.yaml
-  - ./kube-prom-stack/pve-dashboard.yaml
-  - ./kube-prom-stack/ingress.yaml
-  # ./kube-prom-stack/login-secret.yaml
-  - ./prometheus-exporters/pve-deployment.yaml
-  - ./prometheus-exporters/pve-service.yaml
-  - ./prometheus-exporters/pve-values.yaml
-  # ./prometheus-exporters/pve-api-token-secret.yaml
-  - ./prometheus-exporters/has-values.yaml
+  - ./kube-prom-stack
+  - ./prometheus-exporters
