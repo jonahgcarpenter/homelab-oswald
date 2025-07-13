@@ -3,7 +3,7 @@ kind: ScrapeConfig
 metadata:
   name: exporter-has
   labels:
-    release: prometheus
+    release: kube-prometheus-stack
 spec:
   staticConfigs:
     - targets:
