@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: cert-manager
 resources:
   - namespace.yaml
-  - repo.yaml
   - release.yaml
   - cert-issuer.yaml
   #- api-secret.yaml - need to seal secret first
