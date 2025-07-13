@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+      version: "75.9.0"
+  values:
+    grafana:
+      admin:
+        existingSecret: "grafana-admin-credentials"
+
+        userKey: admin_user
+        passwordKey: admin_password
+
+      # It's best practice to null out the plaintext values to ensure they are not used.
+      adminUser: ""
+      adminPassword: ""
