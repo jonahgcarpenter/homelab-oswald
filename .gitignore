@@ -2,6 +2,9 @@
 *secret.yaml
 *secrets.yaml
 
+# But explicitly allow files named "sealed-secret.yaml"
+!sealed-secret.yaml
+
 # Keys for FluxCD
 flux-ssh-key
 flux-ssh-key.pub

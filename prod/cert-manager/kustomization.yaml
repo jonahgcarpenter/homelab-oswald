@@ -5,4 +5,4 @@ resources:
   - namespace.yaml
   - release.yaml
   - cert-issuer.yaml
-  #- api-secret.yaml - need to seal secret first
+  - sealed-secret.yaml
