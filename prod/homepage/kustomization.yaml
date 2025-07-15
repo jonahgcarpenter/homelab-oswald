@@ -4,10 +4,10 @@ namespace: homepage
 resources:
   - namespace.yaml
   - serviceaccount.yaml
+  - sealed-secret.yaml
   #  - secret.yaml
   - configmap.yaml
   - clusterrole.yaml
   - service.yaml
   - deployment.yaml
   - ingress.yaml
-#  - api-secrets.yaml
