@@ -3,6 +3,6 @@ kind: Kustomization
 namespace: longhorn-system
 resources:
   - namespace.yaml
+  - sealed-secret.yaml
   - release.yaml
   - ingress.yaml
-#  - smb-secret.yaml
