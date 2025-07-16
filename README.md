@@ -8,7 +8,6 @@
 
 ### Problems:
 
-- sealedsecrets for flux
 - track helmcharts, homepage, kube-vip for updates (hopefully it creates pull request instead of directly pushing to master)
 - HAS grafana dashboard
 - Alert manager MQTT

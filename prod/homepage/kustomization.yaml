@@ -11,3 +11,5 @@ resources:
   - service.yaml
   - deployment.yaml
   - ingress.yaml
+  - update-policy.yaml
+  - update-registry.yaml
