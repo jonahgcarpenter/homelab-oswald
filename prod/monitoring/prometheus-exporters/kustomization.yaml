@@ -5,5 +5,5 @@ resources:
   - pve-deployment.yaml
   - pve-service.yaml
   - pve-values.yaml
-  # pve-api-token-secret.yaml
+  - sealed-secret.yaml
   - has-values.yaml
