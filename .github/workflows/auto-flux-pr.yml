@@ -1,26 +1,32 @@
 name: Create Pull Request for Flux Updates
 
 on:
-  push:
-    branches:
-      - flux-staging
+  create:
 
 jobs:
-  create-pull-request:
+  pull-request:
     runs-on: ubuntu-latest
+    if: |
+      github.event.ref_type == 'branch' &&
+      github.event.ref == 'flux-staging'
+    permissions:
+      pull-requests: write
     steps:
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PAT }}
-          commit-message: "chore(pr): create pull request for flux updates"
-          branch: "flux-pr"
-          delete-branch: true
-          title: "🤖 Automated PR: Flux Image Updates"
-          body: |
-            Automated PR to merge image updates from `flux-staging` into `master`.
-
-            Please review and merge.
-          labels: |
-            flux
-            automation
+          fetch-depth: 0
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # used implicitly by the gh CLI to authenticate with GitHub
+          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_REF: ${{ github.ref }}
+        run: |
+          gh pr create \
+            --repo=${GITHUB_REPO} \
+            --head=flux-staging \
+            --base=master \
+            --title="Pulling ${GITHUB_REF} into main" \
+            --body=":crown: *An automated PR*" \
+            --reviewer=jonahgcarpenter \
+            --draft
