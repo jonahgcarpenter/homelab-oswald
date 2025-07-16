@@ -1,0 +1,13 @@
+name: Debug Workflow
+
+on:
+  push:
+    branches:
+      - "**" # This means trigger on a push to ANY branch
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "Hello, World! The trigger is working."
