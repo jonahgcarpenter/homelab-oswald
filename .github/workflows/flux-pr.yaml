@@ -1,0 +1,26 @@
+name: Create Pull Request for Flux Updates
+
+on:
+  push:
+    branches:
+      - flux-staging
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.PAT }}
+          commit-message: "chore(pr): create pull request for flux updates"
+          branch: "flux-pr"
+          delete-branch: true
+          title: "🤖 Automated PR: Flux Image Updates"
+          body: |
+            Automated PR to merge image updates from `flux-staging` into `master`.
+
+            Please review and merge.
+          labels: |
+            flux
+            automation
