@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: pihole
 resources:
   - namespace.yaml
+  - sealed-secret.yaml
   - volume.yaml
   - release.yaml
   - ingress.yaml
-  #  - login-secret.yaml
