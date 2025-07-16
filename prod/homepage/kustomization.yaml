@@ -13,3 +13,4 @@ resources:
   - ingress.yaml
   - update-policy.yaml
   - update-registry.yaml
+  - update-automation.yaml

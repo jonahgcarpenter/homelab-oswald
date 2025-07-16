@@ -20,5 +20,5 @@ spec:
     push:
       branch: flux-staging
   update:
-    path: ./prod
+    path: ./prod/homepage
     strategy: Setters
