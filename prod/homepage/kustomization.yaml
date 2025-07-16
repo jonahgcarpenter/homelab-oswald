@@ -5,7 +5,7 @@ resources:
   - namespace.yaml
   - serviceaccount.yaml
   - sealed-secret.yaml
-  #  - secret.yaml
+  - secret.yaml
   - configmap.yaml
   - clusterrole.yaml
   - service.yaml
