@@ -8,7 +8,8 @@
 
 ### Problems:
 
-- track helmcharts, homepage, kube-vip for updates (hopefully it creates pull request instead of directly pushing to master)
+- fix github workflow for auto prs
+- track helm chart versions
 - HAS grafana dashboard
 - Alert manager MQTT
 - migrate authelia, DDNS, vaultwarden, wiregaurd to k3s
