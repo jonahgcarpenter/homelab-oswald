@@ -1,9 +1,5 @@
-# Block any file with the ending "secret.yaml"
-*secret.yaml
-*secrets.yaml
-
-# But explicitly allow files named "sealed-secret.yaml"
-!sealed-secret.yaml
+# Hide any unsealed-secrets 
+unsealed-secret.yaml
 
 # Keys for FluxCD
 flux-ssh-key
