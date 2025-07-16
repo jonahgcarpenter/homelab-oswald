@@ -8,7 +8,6 @@
 
 ### Problems:
 
-- fix github workflow for auto prs
 - track helm chart versions
 - HAS grafana dashboard
 - Alert manager MQTT
