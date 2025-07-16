@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: exporter-proxmox
-          image: prompve/prometheus-pve-exporter:3.5.5
+          image: prompve/prometheus-pve-exporter:3.5.5 # {"$imagepolicy": "flux-system:pve-exporter"}
           env:
             - name: PVE_USER
               value: "prometheus@pam"
