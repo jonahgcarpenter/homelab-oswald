@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: cert-manager
         namespace: flux-system
-      version: "v1.15.1"
+      version: "v1.15.1" # {"$imagepolicy": "flux-system:cert-manager"}
   values:
     crds:
       enabled: true
