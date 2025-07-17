@@ -4,4 +4,3 @@ resources:
   - ./homepage
   - ./pve-exporter
   - ./kube-vip
-  - ./cert-manager
