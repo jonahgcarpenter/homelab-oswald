@@ -6,4 +6,3 @@ metadata:
 spec:
   image: cert-manager
   interval: 5m
-  provider: HelmRepository:cert-manager
