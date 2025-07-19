@@ -11,7 +11,7 @@
 - track helm chart versions
 - HAS grafana dashboard
 - Alert manager MQTT
-- migrate authelia, DDNS, vaultwarden, wiregaurd to k3s
+- migrate authelia, DDNS, vaultwarden to k3s
 - ingress routes for external servers
 - decrease Mini PC iGPU Ram
 

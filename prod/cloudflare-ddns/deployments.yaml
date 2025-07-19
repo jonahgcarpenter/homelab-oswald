@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflare-ddns-proxied
+  labels:
+    app: cloudflare-ddns-proxied
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudflare-ddns-proxied
+  template:
+    metadata:
+      labels:
+        app: cloudflare-ddns-proxied
+    spec:
+      containers:
+        - name: cloudflare-ddns-proxied
+          image: oznu/cloudflare-ddns:latest # Never gets updated anyways
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: ZONE
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-credentials
+                  key: zone
+            - name: SUBDOMAIN
+              value: "dynamic1"
+            - name: PROXIED
+              value: "true"
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-credentials
+                  key: api-token
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflare-ddns-unproxied
+  labels:
+    app: cloudflare-ddns-unproxied
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudflare-ddns-unproxied
+  template:
+    metadata:
+      labels:
+        app: cloudflare-ddns-unproxied
+    spec:
+      containers:
+        - name: cloudflare-ddns-unproxied
+          image: oznu/cloudflare-ddns:latest # Never gets updated anyways
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: ZONE
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-credentials
+                  key: zone
+            - name: SUBDOMAIN
+              value: "vpn1"
+            - name: PROXIED
+              value: "false"
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-credentials
+                  key: api-token
