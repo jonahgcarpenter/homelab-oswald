@@ -33,6 +33,8 @@ spec:
                 secretKeyRef:
                   name: cloudflare-credentials
                   key: api-token
+            - name: DNS_SERVER
+              value: "1.1.1.1"
 
 ---
 apiVersion: apps/v1
@@ -70,3 +72,5 @@ spec:
                 secretKeyRef:
                   name: cloudflare-credentials
                   key: api-token
+            - name: DNS_SERVER
+              value: "1.1.1.1"
