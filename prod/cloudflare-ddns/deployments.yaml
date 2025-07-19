@@ -28,13 +28,13 @@ spec:
               value: "dynamic"
             - name: PROXIED
               value: "true"
+            - name: RRTYPE
+              value: "A"
             - name: API_KEY
               valueFrom:
                 secretKeyRef:
                   name: cloudflare-credentials
                   key: api-token
-            - name: DNS_SERVER
-              value: "1.1.1.1"
 
 ---
 apiVersion: apps/v1
@@ -67,10 +67,10 @@ spec:
               value: "vpn"
             - name: PROXIED
               value: "false"
+            - name: RRTYPE
+              value: "A"
             - name: API_KEY
               valueFrom:
                 secretKeyRef:
                   name: cloudflare-credentials
                   key: api-token
-            - name: DNS_SERVER
-              value: "1.1.1.1"
