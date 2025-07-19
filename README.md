@@ -8,6 +8,8 @@
 
 ### Problems:
 
+- PVE-3 not turning on after power loss
+- Fix frigate failing to auto-start
 - track helm chart versions
 - HAS grafana dashboard
 - Alert manager MQTT
