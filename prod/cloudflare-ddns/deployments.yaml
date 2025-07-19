@@ -25,7 +25,7 @@ spec:
                   name: cloudflare-credentials
                   key: zone
             - name: SUBDOMAIN
-              value: "dynamic1"
+              value: "dynamic"
             - name: PROXIED
               value: "true"
             - name: API_KEY
@@ -62,7 +62,7 @@ spec:
                   name: cloudflare-credentials
                   key: zone
             - name: SUBDOMAIN
-              value: "vpn1"
+              value: "vpn"
             - name: PROXIED
               value: "false"
             - name: API_KEY
