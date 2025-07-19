@@ -1,0 +1,29 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pve-1-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`pve-1.home.jonahsserver.com`)
+      kind: Rule
+      services:
+        - name: pve-1
+          port: 8006
+          scheme: https
+          serversTransport: pve-1-insecure-transport
+  tls:
+    secretName: pve-1-certificate-secret
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pve-1-ingress-certificate
+spec:
+  secretName: pve-1-certificate-secret
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - pve-1.home.jonahsserver.com
