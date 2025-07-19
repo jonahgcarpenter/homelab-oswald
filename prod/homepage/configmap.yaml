@@ -135,9 +135,6 @@ data:
             href: https://oswald.home.jonahsserver.com/
 
     - Security:
-        - Authelia:
-            icon: authelia.png
-            href: https://auth.home.jonahsserver.com/
         - Vaultwarden:
             icon: vaultwarden.png
             href: https://vaultwarden.home.jonahsserver.com/
