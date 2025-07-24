@@ -41,7 +41,7 @@
 - Compute Module 4
 - 4GB Ram
 
-### [Tripplite UPS] (https://a.co/d/gjzwQbd)
+### [Tripplite UPS](https://a.co/d/gjzwQbd)
 
 - 1500VA
 - 1440W
