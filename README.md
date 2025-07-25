@@ -1,6 +1,6 @@
 # Project Oswald (aka Homelab)
 
-![IMG_3768](https://github.com/user-attachments/assets/f35d5403-bbf1-43b6-9aeb-457df8ff4204)
+<img width="480" height="640" alt="IMG_3842 Medium" src="https://github.com/user-attachments/assets/d3b9df0d-185f-4a04-8e3a-9e10990dcf5c" />
 
 ## Todo
 
@@ -8,8 +8,8 @@
 
 ### Problems:
 
-- PVE-3 not turning on after power loss
-- Fix frigate failing to auto-start
+- NUT client stop timer after power re-established
+- Fix frigate failing to auto-start (auto mount smb timing)
 - track helm chart versions
 - HAS grafana dashboard
 - Alert manager MQTT
