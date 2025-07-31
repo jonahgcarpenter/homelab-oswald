@@ -16,11 +16,7 @@ spec:
   values:
     hostname: rancher.home.jonahsserver.com
 
-    bootstrapPassword:
-      valueFrom:
-        secretKeyRef:
-          name: rancher-bootstrap-secret
-          key: password
+    bootstrapSecret: rancher-bootstrap-secret
 
     ingress:
       ingressClassName: traefik
