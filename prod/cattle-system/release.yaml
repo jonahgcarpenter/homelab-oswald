@@ -1,0 +1,28 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: rancher
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: rancher
+      version: "2.12.0"
+      sourceRef:
+        kind: HelmRepository
+        name: rancher-latest
+        namespace: flux-system
+      interval: 5m
+  values:
+    hostname: rancher.home.jonahsserver.com
+
+    bootstrapPassword:
+      valueFrom:
+        secretKeyRef:
+          name: rancher-bootstrap-secret
+          key: password
+
+    ingress:
+      ingressClassName: traefik
+      extraAnnotations:
+        cert-manager.io/cluster-issuer: "cloudflare-clusterissuer"
