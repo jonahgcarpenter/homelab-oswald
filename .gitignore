@@ -4,3 +4,5 @@ unsealed-secret.yaml
 # Keys for FluxCD
 flux-ssh-key
 flux-ssh-key.pub
+
+rancher-cleanup/
