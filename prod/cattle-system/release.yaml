@@ -21,4 +21,6 @@ spec:
       extraAnnotations:
         cert-manager.io/cluster-issuer: "cloudflare-issuer"
     tls: external
-    bootstrapPassword: null
+    bootstrapPassword:
+      secretName: rancher-bootstrap-secret
+      secretKey: bootstrapPassword
