@@ -18,5 +18,4 @@ spec:
     ingress:
       enabled: false
     ingressRoute:
-      enabled: true
-      secretName: rancher-tls-secret
+      enabled: false
