@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: cattle-system
 resources:
   - namespace.yaml
-  - sealed-secret.yaml
   - release.yaml
