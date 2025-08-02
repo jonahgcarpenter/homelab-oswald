@@ -22,7 +22,7 @@ metadata:
 spec:
   secretName: rancher-tls-secret
   issuerRef:
-    name: cloudflare-issuer
+    name: cloudflare-clusterissuer
     kind: ClusterIssuer
   dnsNames:
     - rancher.home.jonahsserver.com
