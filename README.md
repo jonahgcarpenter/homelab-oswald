@@ -9,7 +9,6 @@
 ### Problems:
 
 - ETCD backups with rancher
-- Fix prometheus exporters with flux
 - Fix duplicate homepage cert creation
 - Fix frigate failing to auto-start (auto mount smb timing)
 - track helm chart versions
