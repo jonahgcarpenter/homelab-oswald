@@ -1,5 +1,3 @@
-# The secret.yaml file is creating a duplicate unused cert and will be fixed laater
-
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: homepage
