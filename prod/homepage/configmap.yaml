@@ -103,6 +103,9 @@ data:
         - Grafana:
             icon: grafana.png
             href: https://grafana.home.jonahsserver.com/
+        - Rancher:
+            icon: rancher.png
+            href: https://rancher.home.jonahsserver.com/
         - Portainer:
             icon: portainer.png
             href: https://portainer.home.jonahsserver.com/
