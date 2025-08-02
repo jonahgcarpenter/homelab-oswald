@@ -6,4 +6,4 @@ resources:
   - pve-service.yaml
   - pve-values.yaml
   - sealed-secret.yaml
-#  - has-values.yaml
+  - has-values.yaml
