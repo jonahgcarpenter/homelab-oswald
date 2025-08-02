@@ -8,10 +8,11 @@
 
 ### Problems:
 
+- Fix prometheus exporters with flux
+- Fix duplicate homepage cert creation
 - Fix frigate failing to auto-start (auto mount smb timing)
 - track helm chart versions
 - HAS grafana dashboard
-- Alert manager MQTT
 - 2FA
 - migrate vaultwarden to k3s
 - ingress routes for external servers
