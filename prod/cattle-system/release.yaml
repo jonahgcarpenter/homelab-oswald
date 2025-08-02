@@ -16,8 +16,7 @@ spec:
   values:
     hostname: rancher.home.jonahsserver.com
     ingress:
+      enabled: false
+    ingressRoute:
       enabled: true
-      ingressClassName: traefik
-      extraAnnotations:
-        cert-manager.io/cluster-issuer: "cloudflare-issuer"
-    tls: external
+      secretName: rancher-tls-secret
