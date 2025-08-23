@@ -21,7 +21,7 @@
 
 - 2 PoE+
 - 6 PoE
-- 2.5GB Wan
+- 2.5GB WAN
 - 2 SFP+
 - [2x U7 Lite APs](https://store.ui.com/us/en/category/all-wifi/products/u7-lite)
 
