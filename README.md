@@ -1,6 +1,6 @@
 # Project Oswald (aka Homelab)
 
-<img width="480" height="640" alt="IMG_3842 Medium" src="https://github.com/user-attachments/assets/d3b9df0d-185f-4a04-8e3a-9e10990dcf5c" />
+<img width="960" height="1280" alt="IMG_3925 Large" src="https://github.com/user-attachments/assets/7313fd84-d134-4c4d-996e-1621364666d5" />
 
 ## Todo
 
@@ -16,6 +16,14 @@
 - ingress routes for external servers
 
 ## Hardware
+
+### [UDM-SE](https://store.ui.com/us/en/category/all-cloud-gateways/products/udm-se)
+
+- 2 PoE+
+- 6 PoE
+- 2.5GB Wan
+- 2 SFP+
+- [2x U7 Lite APs](https://store.ui.com/us/en/category/all-wifi/products/u7-lite)
 
 ### [PVE 1 & 2](https://www.gmktec.com/products/amd-ryzen-7-5825u-mini-pc-nucbox-m5-plus?srsltid=AfmBOorNrOPnRo3cqmPHBq14s82hdWG4dPwe6ntEimRl0J_gWKyXjpC3)
 
