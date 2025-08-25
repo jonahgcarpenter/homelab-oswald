@@ -8,12 +8,13 @@
 
 ### Problems:
 
-- Fix frigate failing to auto-start (auto mount smb timing)
+- Update to frigate 16, fix smb share situation
 - track helm chart versions
 - HAS grafana dashboard
-- 2FA
-- migrate vaultwarden to k3s
+- 2FA middleware
 - ingress routes for external servers
+- move WG server to UDM-SE
+- migrate from LXC containers to kubernetes
 
 ## Hardware
 
