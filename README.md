@@ -8,13 +8,13 @@
 
 ### Problems:
 
-- Update to frigate 16, fix smb share situation
+- Update to frigate 16
 - track helm chart versions
 - HAS grafana dashboard
 - 2FA middleware
 - ingress routes for external servers
 - move WG server to UDM-SE
-- migrate from LXC containers to kubernetes
+- slowly migrate from LXC containers to kubernetes
 
 ## Hardware
 
