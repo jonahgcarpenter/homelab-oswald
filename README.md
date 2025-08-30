@@ -13,7 +13,6 @@
 - HAS grafana dashboard
 - 2FA middleware
 - ingress routes for external servers
-- move WG server to UDM-SE
 - slowly migrate from LXC containers to kubernetes
 
 ## Hardware
