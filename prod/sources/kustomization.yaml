@@ -9,3 +9,4 @@ resources:
   - pihole-repo.yaml
   - sealed-secrets-repo.yaml
   - rancher-repo.yaml
+  - frigate-repo.yaml
