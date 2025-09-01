@@ -31,7 +31,7 @@ spec:
         csi:
           driver: smb.csi.k8s.io
           readOnly: false
-          nodeStageSecretRef:
+          nodePublishSecretRef:
             name: frigate-smb-credentials
           volumeHandle: frigate-media-smb-handle
           volumeAttributes:
