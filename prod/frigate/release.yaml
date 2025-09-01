@@ -34,9 +34,42 @@ spec:
     nodeSelector:
       coral: "true"
 
-    extraEnvFrom:
-      - secretRef:
-          name: frigate-config-secrets
+    extraEnv:
+      - name: MQTT_HOST
+        valueFrom:
+          secretKeyRef:
+            name: frigate-config-secrets
+            key: mqtt_host
+      - name: MQTT_USER
+        valueFrom:
+          secretKeyRef:
+            name: frigate-config-secrets
+            key: mqtt_user
+      - name: MQTT_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: frigate-config-secrets
+            key: mqtt_password
+      - name: DOORBELL
+        valueFrom:
+          secretKeyRef:
+            name: frigate-config-secrets
+            key: doorbell
+      - name: DOORBELL_SUB
+        valueFrom:
+          secretKeyRef:
+            name: frigate-config-secrets
+            key: doorbell_sub
+      - name: PATIO
+        valueFrom:
+          secretKeyRef:
+            name: frigate-config-secrets
+            key: patio
+      - name: DRIVEWAY
+        valueFrom:
+          secretKeyRef:
+            name: frigate-config-secrets
+            key: driveway
 
     config: |
       mqtt:
