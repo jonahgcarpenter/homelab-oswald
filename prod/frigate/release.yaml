@@ -1,0 +1,40 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: frigate
+  namespace: frigate
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: frigate
+      version: "7.8.0"
+      sourceRef:
+        kind: HelmRepository
+        name: blakeblackshear
+        namespace: flux-system
+      interval: 5m
+  values:
+    service:
+      type: LoadBalancer
+      port: 5000
+
+    coral:
+      enabled: true
+      hostPath: /dev/bus/usb
+
+    securityContext:
+      privileged: true
+
+    persistence:
+      media:
+        enabled: true
+        existingClaim: pvc-frigate-media
+        subPath: "media"
+      config:
+        enabled: true
+        existingClaim: pvc-frigate-media
+        subPath: "config"
+
+    nodeSelector:
+      coral: "true"
