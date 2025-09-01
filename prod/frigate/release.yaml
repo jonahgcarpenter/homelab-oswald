@@ -35,37 +35,37 @@ spec:
       coral: "true"
 
     extraEnv:
-      - name: MQTT_HOST
+      - name: FRIGATE_MQTT_HOST
         valueFrom:
           secretKeyRef:
             name: frigate-config-secrets
             key: mqtt_host
-      - name: MQTT_USER
+      - name: FRIGATE_MQTT_USER
         valueFrom:
           secretKeyRef:
             name: frigate-config-secrets
             key: mqtt_user
-      - name: MQTT_PASSWORD
+      - name: FRIGATE_MQTT_PASSWORD
         valueFrom:
           secretKeyRef:
             name: frigate-config-secrets
             key: mqtt_password
-      - name: DOORBELL
+      - name: FRIGATE_DOORBELL
         valueFrom:
           secretKeyRef:
             name: frigate-config-secrets
             key: doorbell
-      - name: DOORBELL_SUB
+      - name: FRIGATE_DOORBELL_SUB
         valueFrom:
           secretKeyRef:
             name: frigate-config-secrets
             key: doorbell_sub
-      - name: PATIO
+      - name: FRIGATE_PATIO
         valueFrom:
           secretKeyRef:
             name: frigate-config-secrets
             key: patio
-      - name: DRIVEWAY
+      - name: FRIGATE_DRIVEWAY
         valueFrom:
           secretKeyRef:
             name: frigate-config-secrets
@@ -73,20 +73,20 @@ spec:
 
     config: |
       mqtt:
-        host: ${MQTT_HOST}
-        user: ${MQTT_USER}
-        password: ${MQTT_PASSWORD}
+        host: ${FRIGATE_MQTT_HOST}
+        user: ${FRIGATE_MQTT_USER}
+        password: ${FRIGATE_MQTT_PASSWORD}
 
       go2rtc:
         streams:
           doorbell:
-            - ${DOORBELL} 
+            - ${FRIGATE_DOORBELL} 
           doorbell_sub:
-            - ${DOORBELL_SUB} 
+            - ${FRIGATE_DOORBELL_SUB} 
           patio:
-            - ${PATIO}
+            - ${FRIGATE_PATIO}
           driveway:
-            - ${DRIVEWAY} 
+            - ${FRIGATE_DRIVEWAY} 
 
       cameras:
 
