@@ -33,6 +33,7 @@ spec:
           readOnly: false
           nodePublishSecretRef:
             name: frigate-smb-credentials
+            namespace: frigate
           volumeHandle: frigate-media-smb-handle
           volumeAttributes:
             source: "//192.168.4.110/frigate"
