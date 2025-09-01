@@ -36,6 +36,7 @@ spec:
             source: "//192.168.4.110/frigate"
           nodePublishSecretRef:
             name: frigate-smb-credentials
+            namespace: frigate
 
     extraVolumeMounts:
       - name: frigate-media-smb
