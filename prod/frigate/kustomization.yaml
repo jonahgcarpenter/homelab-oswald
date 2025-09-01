@@ -6,4 +6,4 @@ resources:
   - release.yaml
   - sealed-secret.yaml
   - pv.yaml
-  - pcv.yaml
+  - pvc.yaml
