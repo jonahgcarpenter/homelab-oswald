@@ -33,7 +33,6 @@ spec:
       config:
         enabled: true
         existingClaim: pvc-frigate-media
-        subPath: config.yaml
 
     nodeSelector:
       coral: "true"
