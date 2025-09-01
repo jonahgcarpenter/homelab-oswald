@@ -6,6 +6,3 @@ spec:
   accessModes:
     - ReadWriteMany
   storageClassName: smb
-  resources:
-    requests:
-      storage: 100Gi

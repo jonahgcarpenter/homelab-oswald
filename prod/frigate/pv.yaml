@@ -17,6 +17,7 @@ spec:
     volumeHandle: frigate-media-pv
     volumeAttributes:
       source: "//192.168.4.110/frigate"
+      subdirectory: "frigate"
     nodeStageSecretRef:
       name: frigate-smb-credentials
       namespace: frigate
