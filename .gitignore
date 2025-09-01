@@ -1,8 +1,9 @@
 # Hide any unsealed-secrets 
 unsealed-secret.yaml
 
+# Frigate config
+config.yaml
+
 # Keys for FluxCD
 flux-ssh-key
 flux-ssh-key.pub
-
-rancher-cleanup/
