@@ -30,9 +30,11 @@ spec:
       media:
         enabled: true
         existingClaim: pvc-frigate-media
+        subPath: "media"
       config:
         enabled: true
         existingClaim: pvc-frigate-media
+        subPath: "config"
 
     nodeSelector:
       coral: "true"
