@@ -4,7 +4,7 @@ metadata:
   name: pv-frigate-media
 spec:
   capacity:
-    storage: 500Gi
+    storage: 1Ti
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain

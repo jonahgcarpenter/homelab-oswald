@@ -9,16 +9,4 @@ spec:
   volumeName: pv-frigate-media
   resources:
     requests:
-      storage: 500Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-frigate-config
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: longhorn
-  resources:
-    requests:
-      storage: 1Gi
+      storage: 1Ti
