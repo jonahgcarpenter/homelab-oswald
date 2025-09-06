@@ -1,6 +1,6 @@
 # Project Oswald (aka Homelab)
 
-<img width="960" height="1280" alt="IMG_3925 Large" src="https://github.com/user-attachments/assets/7313fd84-d134-4c4d-996e-1621364666d5" />
+<img width="480" height="640" alt="IMG_3986 Medium" src="https://github.com/user-attachments/assets/043fa5c7-a0f7-49b2-9892-acf2e0e6f01a" />
 
 ## Todo
 
