@@ -10,7 +10,8 @@
 
 ### Problems:
 
-- Update to frigate 16
+- replace WiFi cards in PVE 1/2 with M-Key TPUs
+- Update to frigate 16 (waiting for helm chart update)
 - track helm chart versions
 - HAS grafana dashboard
 - 2FA middleware
