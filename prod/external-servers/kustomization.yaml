@@ -10,3 +10,4 @@ resources:
   - ./unify
   - ./vaultwarden
   - ./truenas
+  - ./npm
