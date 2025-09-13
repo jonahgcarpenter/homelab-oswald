@@ -10,13 +10,12 @@
 
 ### Problems:
 
-- replace WiFi cards in PVE 1/2 with M-Key TPUs
-- Update to frigate 16 (waiting for helm chart update)
-- track helm chart versions
+- passthrough gpu to k3s
+- move ollama, joney-bot, vaultwarden, cratycontroller to k3s
+- enable and train frigate facial recognition
+- track helm chart versions with flux automations
 - HAS grafana dashboard
 - 2FA middleware
-- ingress routes for external servers
-- slowly migrate from LXC containers to kubernetes
 
 ## Hardware
 
