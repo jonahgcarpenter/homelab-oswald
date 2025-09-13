@@ -6,3 +6,4 @@ resources:
   - ./pve-2
   - ./pve-3
   - ./portainer
+  - ./crafty
