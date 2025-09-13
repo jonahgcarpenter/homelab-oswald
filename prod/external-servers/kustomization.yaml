@@ -8,3 +8,4 @@ resources:
   - ./portainer
   - ./crafty
   - ./unify
+  - ./vaultwarden

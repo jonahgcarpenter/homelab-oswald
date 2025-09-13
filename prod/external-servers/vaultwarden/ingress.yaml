@@ -1,0 +1,29 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: vaultwarden-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`vaultwarden.home.jonahsserver.com`)
+      kind: Rule
+      services:
+        - name: vaultwarden
+          port: 8000
+          scheme: https
+          serversTransport: vaultwarden-insecure-transport
+  tls:
+    secretName: vaultwarden-certificate-secret
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vaultwarden-ingress-certificate
+spec:
+  secretName: vaultwarden-certificate-secret
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - vaultwarden.home.jonahsserver.com
