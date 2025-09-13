@@ -11,3 +11,5 @@ resources:
   - ./vaultwarden
   - ./truenas
   - ./npm
+  - ./homebridge
+  - ./oswald
