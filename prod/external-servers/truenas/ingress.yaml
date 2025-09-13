@@ -12,7 +12,6 @@ spec:
         - name: truenas
           port: 80
           scheme: http
-          serversTransport: truenas-insecure-transport
   tls:
     secretName: truenas-certificate-secret
 ---
