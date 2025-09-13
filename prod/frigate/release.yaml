@@ -166,4 +166,4 @@ spec:
           type: edgetpu
           device: usb
 
-      version: 0.14
+      version: 0.16.1
