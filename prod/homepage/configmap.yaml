@@ -98,9 +98,6 @@ data:
               username: {{HOMEPAGE_VAR_NPM_USERNAME}}
               password: {{HOMEPAGE_VAR_NPM_PASSWORD}}
               fields: ["enabled", "disabled", "total"]
-        - Wireguard:
-            icon: wireguard.png
-            href: https://wg.home.jonahsserver.com/
 
     - Monitoring & Management:
         - Grafana:
