@@ -1,0 +1,8 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: joney-bot-image
+  namespace: flux-system
+spec:
+  image: jonahgcarpenter/joney-bot
+  interval: 5m

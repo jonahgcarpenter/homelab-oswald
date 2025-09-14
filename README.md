@@ -11,7 +11,7 @@
 ### Problems:
 
 - passthrough gpu to k3s
-- move ollama, joney-bot, vaultwarden, cratycontroller to k3s
+- move ollama, vaultwarden, cratycontroller to k3s
 - enable and train frigate facial recognition
 - track helm chart versions with flux automations
 - HAS grafana dashboard
