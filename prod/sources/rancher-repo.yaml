@@ -1,7 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: rancher-latest
-spec:
-  interval: 30m
-  url: https://releases.rancher.com/server-charts/latest
