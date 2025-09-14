@@ -23,6 +23,11 @@ spec:
   values:
     driver:
       enabled: false
+    containerd:
+      config: /var/lib/rancher/k3s/agent/etc/containerd/config.toml
+      socket: /run/k3s/containerd/containerd.sock
+      runtimeClassName: "nvidia"
+      setAsDefault: true
     tolerations:
       - key: "node-role.kubernetes.io/control-plane"
         operator: "Exists"
@@ -32,15 +37,5 @@ spec:
         effect: "NoSchedule"
       - key: "CriticalAddonsOnly"
         operator: "Exists"
-    toolkit:
-      env:
-        - name: CONTAINERD_CONFIG
-          value: /var/lib/rancher/k3s/agent/etc/containerd/config.toml
-        - name: CONTAINERD_SOCKET
-          value: /run/k3s/containerd/containerd.sock
-        - name: CONTAINERD_RUNTIME_CLASS
-          value: nvidia
-        - name: CONTAINERD_SET_AS_DEFAULT
-          value: "true"
     validator:
       runtimeClassName: ""
