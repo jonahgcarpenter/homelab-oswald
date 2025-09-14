@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: joney-bot
+  labels:
+    app: joney-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: joney-bot
+  template:
+    metadata:
+      labels:
+        app: joney-bot
+    spec:
+      containers:
+        - name: joney-bot
+          image: jonahgcarpenter/joney-bot:1.2
+          envFrom:
+            - configMapRef:
+                name: joney-bot-config
+            - secretRef:
+                name: joney-bot-secret
