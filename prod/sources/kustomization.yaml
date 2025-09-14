@@ -10,3 +10,4 @@ resources:
   - sealed-secrets-repo.yaml
   - frigate-repo.yaml
   - csi-driver-smb-repo.yaml
+  - gpu-operator-repo.yaml
