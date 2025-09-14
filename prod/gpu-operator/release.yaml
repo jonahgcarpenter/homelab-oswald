@@ -28,6 +28,8 @@ spec:
       socket: /run/k3s/containerd/containerd.sock
       runtimeClassName: "nvidia"
       setAsDefault: true
+    cdi:
+      enabled: true
     tolerations:
       - key: "node-role.kubernetes.io/control-plane"
         operator: "Exists"
@@ -38,4 +40,4 @@ spec:
       - key: "CriticalAddonsOnly"
         operator: "Exists"
     validator:
-      runtimeClassName: ""
+      runtimeClassName: "nvidia"
