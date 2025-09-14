@@ -1,6 +1,0 @@
-apiversion: kustomize.config.k8s.io/v1beta1
-kind: kustomization
-namespace: gpu-operator
-resources:
-  - namespace.yaml
-  - release.yaml
