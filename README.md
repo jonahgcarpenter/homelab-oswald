@@ -10,9 +10,7 @@
 
 ### Problems:
 
-- passthrough gpu to k3s
-- move ollama, vaultwarden, cratycontroller to k3s
-- enable and train frigate facial recognition
+- move vaultwarden, cratycontroller to k3s
 - track helm chart versions with flux automations
 - HAS grafana dashboard
 - 2FA middleware
