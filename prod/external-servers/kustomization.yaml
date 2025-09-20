@@ -8,7 +8,6 @@ resources:
   - ./portainer
   - ./crafty
   - ./unify
-  - ./vaultwarden
   - ./truenas
   - ./npm
   - ./homebridge
