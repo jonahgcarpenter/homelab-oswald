@@ -26,7 +26,7 @@ data:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 30,
+      "id": 1,
       "links": [],
       "panels": [
         {
@@ -815,6 +815,7 @@ data:
         }
       ],
       "preload": false,
+      "refresh": "auto",
       "schemaVersion": 41,
       "tags": [],
       "templating": {
@@ -828,5 +829,5 @@ data:
       "timezone": "browser",
       "title": "Home Assistant",
       "uid": "e09b182c-4821-4476-b156-f9571664780d",
-      "version": 5
+      "version": 1
     }
