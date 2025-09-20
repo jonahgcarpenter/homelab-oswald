@@ -1,7 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: blakeblackshear
-spec:
-  interval: 30m
-  url: https://blakeblackshear.github.io/blakeshome-charts/
