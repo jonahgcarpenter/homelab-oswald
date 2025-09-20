@@ -11,7 +11,6 @@
 ### Problems:
 
 - track helm chart versions with flux automations
-- HAS grafana dashboard
 - 2FA middleware
 
 ## Hardware

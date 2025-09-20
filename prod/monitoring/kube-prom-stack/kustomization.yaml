@@ -6,4 +6,5 @@ resources:
   - sealed-secret.yaml
   - release.yaml
   - pve-dashboard.yaml
+  - has-dashboard.yaml
   - ingress.yaml
