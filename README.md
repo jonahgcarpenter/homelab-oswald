@@ -10,8 +10,10 @@
 
 ### Problems:
 
+- split GPU between multiple LXCs instead of using passthrough
+- swap to bare metal k3s to remove virtualization overhead, reserve proxmox for NAS, DBs, GPU LXCs, Public servers
 - track helm chart versions with flux automations
-- 2FA middleware
+- email notis from longhorn backups
 
 ## Hardware
 
