@@ -8,5 +8,3 @@ resources:
   - longhorn-repo.yaml
   - pihole-repo.yaml
   - sealed-secrets-repo.yaml
-  - frigate-repo.yaml
-  - csi-driver-smb-repo.yaml
