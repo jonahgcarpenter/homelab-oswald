@@ -8,4 +8,4 @@ spec:
     name: joney-bot-image
   policy:
     semver:
-      range: ">=1.2"
+      range: ">=1.2.1"
