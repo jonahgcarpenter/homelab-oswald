@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: joney-bot
-          image: jonahgcarpenter/joney-bot:1.2.1 # {"$imagepolicy": "flux-system:joney-bot"}
+          image: jonahgcarpenter/joney-bot:v1.2.1 # {"$imagepolicy": "flux-system:joney-bot"}
           envFrom:
             - configMapRef:
                 name: joney-bot-config
