@@ -70,7 +70,7 @@ fi
 
 # 3. Run rsync
 echo "Starting rsync... Log will be at $LOG_FILE"
-rsync_command="rsync -ah --delete --exclude='/lost+found' '$SOURCE_MNT/' '$DEST_MNT/'"
+rsync_command="rsync -ah --info=progress2 --exclude='/lost+found' '$SOURCE_MNT/' '$DEST_MNT/'"
 
 if eval "$rsync_command"; then
   # Success
