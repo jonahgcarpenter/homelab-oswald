@@ -10,11 +10,9 @@
 
 ### Problems:
 
-- change homepage update policy to major versions
 - split GPU between multiple LXCs instead of using passthrough
-- swap to bare metal k3s to remove virtualization overhead, reserve proxmox for NAS, DBs, GPU LXCs, Public servers
+- swap to bare metal k3s to remove virtualization overhead
 - track helm chart versions with flux automations
-- email notis from longhorn backups
 
 ## Hardware
 
