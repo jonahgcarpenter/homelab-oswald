@@ -1,9 +1,15 @@
-# Hide any unsealed-secrets 
+# Secrets 
 unsealed-secret.yaml
-
-# Frigate config
-config.yaml
+.env
 
 # Keys for FluxCD
 flux-ssh-key
 flux-ssh-key.pub
+
+# TERRAFORM
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+
+# TALOS
+talos-config/

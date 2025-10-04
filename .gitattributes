@@ -1,2 +1,6 @@
+# YAML
 *.yaml linguist-detectable=true
 *.yml linguist-detectable=true
+
+# Terraform
+*.tf linguist-detectable=true
