@@ -1,7 +1,7 @@
 # Project Oswald (aka Homelab)
 
 <div align="center">
-  <img width="480" height="640" alt="Server Rack" src="https://github.com/user-attachments/assets/043fa5c7-a0f7-49b2-9892-acf2e0e6f01a" />
+  <img width="480" height="640" alt="Server Rack" src="./pictures/Rack.jpeg" />
 </div>
 
 ## Todo
