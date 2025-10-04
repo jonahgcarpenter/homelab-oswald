@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/badge/Portainer-13BEF9?style=for-the-badge&logo=portainer&logoColor=white" alt="Portainer"/>
   <img src="https://img.shields.io/badge/Minecraft-59A653?style=for-the-badge&logoColor=white" alt="Minecraft"/>
   <img src="https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama"/>
-  <img src="https://img.shields.io/badge/Longhorn-E94F36?style=for-the-badge&logoColor=white" alt="Longhorn"/>
+  <img src="https://img.shields.io/badge/Longhorn-4A154B?style=for-the-badge&logoColor=white" alt="Longhorn"/>
   <img src="https://img.shields.io/badge/Nginx Proxy Manager-F15833?style=for-the-badge&logo=nginx&logoColor=white" alt="Nginx Proxy Manager"/>
   <img src="https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white" alt="Grafana"/>
   <img src="https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white" alt="Prometheus"/>
