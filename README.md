@@ -1,8 +1,35 @@
 # Project Oswald (aka Homelab)
 
-<div align="center">
-  <img width="480" height="640" alt="Server Rack" src="./pictures/Rack.jpeg" />
-</div>
+<p align="center">
+  <img alt="Server Rack" src="./pictures/Rack.jpeg" width="60%">
+</p>
+
+---
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Proxmox-E57000?style=for-the-badge&logo=proxmox&logoColor=white" alt="Proxmox"/>
+  <img src="https://img.shields.io/badge/K3s-FFD700?style=for-the-badge&logo=k3s&logoColor=black" alt="K3s"/>
+  <img src="https://img.shields.io/badge/Pi--hole-96060C?style=for-the-badge&logo=pi-hole&logoColor=white" alt="Pi-hole"/>
+  <img src="https://img.shields.io/badge/Home Assistant-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white" alt="Home Assistant"/>
+  <img src="https://img.shields.io/badge/TrueNAS-0095D5?style=for-the-badge&logo=truenas&logoColor=white" alt="TrueNAS"/>
+  <img src="https://img.shields.io/badge/UniFi-0193D7?style=for-the-badge&logo=ubiquiti&logoColor=white" alt="UniFi"/>
+  <img src="https://img.shields.io/badge/Portainer-13BEF9?style=for-the-badge&logo=portainer&logoColor=white" alt="Portainer"/>
+  <img src="https://img.shields.io/badge/Minecraft-59A653?style=for-the-badge&logoColor=white" alt="Minecraft"/>
+  <img src="https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama"/>
+  <img src="https://img.shields.io/badge/Longhorn-E94F36?style=for-the-badge&logoColor=white" alt="Longhorn"/>
+  <img src="https://img.shields.io/badge/Nginx Proxy Manager-F15833?style=for-the-badge&logo=nginx&logoColor=white" alt="Nginx Proxy Manager"/>
+  <img src="https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white" alt="Grafana"/>
+  <img src="https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white" alt="Prometheus"/>
+  <img src="https://img.shields.io/badge/Vaultwarden-175DDC?style=for-the-badge&logo=vaultwarden&logoColor=white" alt="Vaultwarden"/>
+  <img src="https://img.shields.io/badge/Traefik-24A1C1?style=for-the-badge&logo=traefikproxy&logoColor=white" alt="Traefik"/>
+  <img src="https://img.shields.io/badge/Flux--CD-44A1C3?style=for-the-badge&logo=flux&logoColor=white" alt="FluxCD"/>
+  <img src="https://img.shields.io/badge/Frigate-000000?style=for-the-badge&logo=frigate&logoColor=white" alt="Frigate"/>
+  <img src="https://img.shields.io/badge/Cert--Manager-175DDC?style=for-the-badge&logoColor=white" alt="Cert-Manager"/>
+  <img src="https://img.shields.io/badge/Terraform-844FBA?style=for-the-badge&logo=terraform&logoColor=white" alt="Terraform"/>
+  <img src="https://img.shields.io/badge/Ansible-EE0000?style=for-the-badge&logo=ansible&logoColor=white" alt="Ansible"/>
+</p>
+
+---
 
 ## Todo
 
@@ -11,7 +38,7 @@
 ### Problems:
 
 - split GPU between multiple LXCs instead of using passthrough
-- swap to bare metal k3s to remove virtualization overhead
+- swap to bare metal with talos to remove virtualization overhead
 - track helm chart versions with flux automations
 
 ## Hardware
