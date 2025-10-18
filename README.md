@@ -39,6 +39,7 @@
 
 ### Problems:
 
+- copy NUT client config to this repo
 - split GPU between multiple LXCs instead of using passthrough
 - swap to bare metal with talos to remove virtualization overhead
 - track helm chart versions with flux automations
