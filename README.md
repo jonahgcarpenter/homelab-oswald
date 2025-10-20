@@ -26,7 +26,6 @@
   <img src="https://img.shields.io/badge/Frigate-000000?style=for-the-badge&logo=frigate&logoColor=white" alt="Frigate"/>
   <img src="https://img.shields.io/badge/Cert--Manager-175DDC?style=for-the-badge&logoColor=white" alt="Cert-Manager"/>
   <img src="https://img.shields.io/badge/Terraform-844FBA?style=for-the-badge&logo=terraform&logoColor=white" alt="Terraform"/>
-  <img src="https://img.shields.io/badge/Ansible-EE0000?style=for-the-badge&logo=ansible&logoColor=white" alt="Ansible"/>
   <img src="https://img.shields.io/badge/Sealed Secrets-0D3ECC?style=for-the-badge&logoColor=white" alt="Sealed Secrets"/>
   <img src="https://img.shields.io/badge/WireGuard-88171A?style=for-the-badge&logo=wireguard&logoColor=white" alt="WireGuard"/>
 </p>
@@ -37,31 +36,47 @@
 
 ### [Add List](https://github.com/stars/jonahgcarpenter/lists/homelab-todo)
 
+### Before Talos Move:
+
+- get plain text secrets
+- setup terraform for bootstrap of talos and flux-cd on bare metal, dont forget extra extensions for lonhorn on talos
+- copy NUT client config to this repo
+- Longhorn backups
+- clean up repo, proper file names
+- decide wether or not to wipe and reinstall PVE-3 or simply rename it
+
 ### Problems:
 
-- copy NUT client config to this repo
 - split GPU between multiple LXCs instead of using passthrough
-- swap to bare metal with talos to remove virtualization overhead
+- properly pass drives through to TrueNAS vm for smart values
 - track helm chart versions with flux automations
 
 ## Hardware
 
+### [2x U7 Lite](https://store.ui.com/us/en/category/all-wifi/products/u7-lite)
+
 ### [UDM-SE](https://store.ui.com/us/en/category/all-cloud-gateways/products/udm-se)
 
-- 2 PoE+
-- 6 PoE
-- 2.5GB WAN
-- 2 SFP+
-- [2x U7 Lite APs](https://store.ui.com/us/en/category/all-wifi/products/u7-lite)
+- 2 GbE PoE+
+- 6 GbE PoE
+- 2.5 GbE WAN
+- 2 10G SFP+
 
-### [PVE 1 & 2](https://www.gmktec.com/products/amd-ryzen-7-5825u-mini-pc-nucbox-m5-plus?srsltid=AfmBOorNrOPnRo3cqmPHBq14s82hdWG4dPwe6ntEimRl0J_gWKyXjpC3)
+### [Switch Pro Max 24 PoE](https://store.ui.com/us/en/category/switching-professional-max-xg/products/usw-pro-max-24-poe?variant=usw-pro-max-24-poe)
+
+- 8 GbE PoE+
+- 8 GbE PoE++
+- 8 2.5 GbE PoE++
+- 2 10G SFP+
+
+### [Talos Cluster](https://www.gmktec.com/products/amd-ryzen-7-5825u-mini-pc-nucbox-m5-plus?srsltid=AfmBOorNrOPnRo3cqmPHBq14s82hdWG4dPwe6ntEimRl0J_gWKyXjpC3)
 
 - Ryzen 7 5825U 8C/16T 4.5GHz
 - 2x8GB 3200MHz DDR4
 - 500GB NVMe
 - Dual 2.5GB RJ45
 
-### [PVE 3](https://pcpartpicker.com/user/HeyItsJonah/saved/bkgVD3)
+### [PVE 0](https://pcpartpicker.com/user/HeyItsJonah/saved/bkgVD3)
 
 - Ryzen 5 3600 6C/12T 3.6GHz
 - 4x16GB 3200MHz DDR4
