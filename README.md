@@ -8,7 +8,7 @@
 
 <p align="left">
   <img src="https://img.shields.io/badge/Proxmox-E57000?style=for-the-badge&logo=proxmox&logoColor=white" alt="Proxmox"/>
-  <img src="https://img.shields.io/badge/K3s-FFD700?style=for-the-badge&logo=k3s&logoColor=black" alt="K3s"/>
+  <img src="https://img.shields.io/badge/Talos-525ddc?style=for-the-badge&logo=talos&logoColor=white" alt="Talos"/>
   <img src="https://img.shields.io/badge/Pi--hole-96060C?style=for-the-badge&logo=pi-hole&logoColor=white" alt="Pi-hole"/>
   <img src="https://img.shields.io/badge/Home Assistant-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white" alt="Home Assistant"/>
   <img src="https://img.shields.io/badge/TrueNAS-0095D5?style=for-the-badge&logo=truenas&logoColor=white" alt="TrueNAS"/>
