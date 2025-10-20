@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
-  name: prometheus-exporters-image-automation
+  name: kube-vip-image-automation
   namespace: flux-system
 spec:
   interval: 30m
@@ -20,5 +20,5 @@ spec:
     push:
       branch: flux-staging
   update:
-    path: ./prod/monitoring/prometheus-exporters
+    path: ./clusters/prod/kube-system/kube-vip
     strategy: Setters
