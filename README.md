@@ -1,7 +1,7 @@
 # Project Oswald (aka Homelab)
 
 <p align="center">
-  <img alt="Server Rack" src="./pictures/Rack.jpeg" width="60%">
+  <img alt="Server Rack" src="./pictures/rack.jpeg" width="60%">
 </p>
 
 ---
