@@ -1,10 +1,10 @@
 locals {
   talos_nodes = {
     "talos-01" = {
-      target_node = "pve-3"
+      target_node = "pve-1"
     },
     "talos-02" = {
-      target_node = "pve-3"
+      target_node = "pve-2"
     },
     "talos-03" = {
       target_node = "pve-3"
@@ -37,7 +37,7 @@ resource "proxmox_vm_qemu" "talos" {
     virtio {
       virtio0 {
         disk {
-          size    = "100G"
+          size    = "50G"
           storage = "local-lvm"
         }
       }
