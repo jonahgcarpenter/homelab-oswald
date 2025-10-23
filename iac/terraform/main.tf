@@ -3,5 +3,5 @@ provider "proxmox" {
 }
 
 module "talos" {
-  source = "./models/talos"
+  source = "./modules/talos"
 }
