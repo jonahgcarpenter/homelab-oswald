@@ -39,7 +39,7 @@
 ### Before Talos Move:
 
 - get plain text secrets
-- setup terraform for bootstrap of talos and flux-cd on bare metal, dont forget extra extensions for lonhorn on talos
+- fix chicken and egg problem with terraform since we dont have a VIP until flux bootstraps and installs kubevip
 - copy NUT client config to this repo
 - Longhorn backups
 - clean up repo, proper file names
