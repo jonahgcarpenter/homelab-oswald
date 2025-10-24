@@ -6,10 +6,11 @@ unsealed-secret.yaml
 flux-ssh-key
 flux-ssh-key.pub
 
-# TERRAFORM
+# Terraform
 .terraform/
 terraform.tfstate
 terraform.tfstate.backup
 
-# TALOS
-talos-config/
+# Temp Config Files
+kubeconfig
+talosconfig
