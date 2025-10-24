@@ -10,7 +10,7 @@ data "talos_machine_configuration" "controlplane" {
     yamlencode({
       cluster = {
         apiServer = {
-          certSANs = [var.cluster_dns]
+          certSANs = concat([var.cluster_dns], var.control_plane_nodes)
         }
       }
     }),

@@ -1,9 +1,5 @@
 terraform {
   required_providers {
-    talos = {
-      source  = "siderolabs/talos"
-      version = "0.9.0"
-    }
     flux = {
       source  = "fluxcd/flux"
       version = "1.7.3"

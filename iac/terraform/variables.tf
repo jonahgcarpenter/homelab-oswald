@@ -1,3 +1,5 @@
+# --- Talos Variables ---
+
 variable "cluster_name" {
   description = "A name for the cluster."
   type        = string
@@ -17,4 +19,23 @@ variable "cluster_dns" {
   description = "An additional DNS name to add to the cluster's certificate."
   type        = string
   default     = null
+}
+
+# --- Flux Variables ---
+
+variable "flux_git_path" {
+  description = "Path in the Git repo for Flux to sync."
+  type        = string
+}
+
+variable "flux_git_branch" {
+  description = "Branch for Flux to sync."
+  type        = string
+  default     = "main"
+}
+
+variable "flux_ssh_private_key" {
+  description = "The SSH private key content for Flux."
+  type        = string
+  sensitive   = true
 }
