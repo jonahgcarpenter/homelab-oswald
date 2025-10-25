@@ -1,10 +1,18 @@
 provider "kubernetes" {
-  kubeconfig = var.kubeconfig
+  host = var.cluster_endpoint
+
+  client_certificate     = base64decode(var.client_configuration.client_certificate)
+  client_key             = base64decode(var.client_configuration.client_key)
+  cluster_ca_certificate = base64decode(var.client_configuration.ca_certificate)
 }
 
 provider "flux" {
   kubernetes = {
-    kubeconfig = var.kubeconfig
+    host = var.cluster_endpoint
+
+    client_certificate     = base64decode(var.client_configuration.client_certificate)
+    client_key             = base64decode(var.client_configuration.client_key)
+    cluster_ca_certificate = base64decode(var.client_configuration.ca_certificate)
   }
 
   git = {

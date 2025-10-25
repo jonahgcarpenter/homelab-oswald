@@ -11,8 +11,8 @@ module "talos_cluster" {
 module "flux_cluster" {
   source = "./modules/flux"
 
-  cluster_endpoint = var.cluster_endpoint
-  kubeconfig       = module.talos_cluster.kubeconfig
+  cluster_endpoint     = var.cluster_endpoint
+  client_configuration = module.talos_cluster.client_configuration
 
   git_repo_url    = "ssh://git@github.com/jonahgcarpenter/homelab-oswald.git"
   git_branch      = var.flux_git_branch
