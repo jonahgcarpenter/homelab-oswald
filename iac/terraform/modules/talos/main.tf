@@ -38,6 +38,23 @@ data "talos_machine_configuration" "controlplane" {
           }]
         }
       }
+    }),
+    yamlencode({
+      machine = {
+        kubelet = {
+          extraArgs = {
+            rotate-server-certificates = true
+          }
+        }
+      }
+    }),
+    yamlencode({
+      cluster = {
+        extraManifests = [
+          "https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml",
+          "https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml"
+        ]
+      }
     })
   ]
 }
