@@ -12,5 +12,5 @@ terraform.tfstate
 terraform.tfstate.backup
 
 # Temp Config Files
-kubeconfig
-talosconfig
+kubeconfig.yaml
+talosconfig.yaml

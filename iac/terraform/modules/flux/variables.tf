@@ -1,16 +1,7 @@
-variable "cluster_endpoint" {
-  description = "The Virtual IP (VIP) or Load Balancer IP for the control plane."
+variable "kubeconfig" {
+  description = "The raw kubeconfig content for the cluster."
   type        = string
-}
-
-variable "client_configuration" {
-  description = "The raw client configuration from talos_machine_secrets."
-  type = object({
-    ca_certificate     = string
-    client_certificate = string
-    client_key         = string
-  })
-  sensitive = true
+  sensitive   = true
 }
 
 variable "git_repo_url" {

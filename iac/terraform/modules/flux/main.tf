@@ -1,18 +1,20 @@
+# This provider is for any standard "kubernetes_*" resources
 provider "kubernetes" {
-  host = var.cluster_endpoint
-
-  client_certificate     = base64decode(var.client_configuration.client_certificate)
-  client_key             = base64decode(var.client_configuration.client_key)
-  cluster_ca_certificate = base64decode(var.client_configuration.ca_certificate)
+  kubeconfig = var.kubeconfig
 }
 
+# Create a temporary kubeconfig file from the in-memory variable
+# Use local_sensitive_file to remove the deprecation warning
+resource "local_sensitive_file" "kubeconfig" {
+  content  = var.kubeconfig
+  filename = "${path.module}/.kubeconfig.yaml"
+}
+
+# This provider is for all "flux_*" resources
 provider "flux" {
   kubernetes = {
-    host = var.cluster_endpoint
-
-    client_certificate     = base64decode(var.client_configuration.client_certificate)
-    client_key             = base64decode(var.client_configuration.client_key)
-    cluster_ca_certificate = base64decode(var.client_configuration.ca_certificate)
+    # Point the flux provider to the file we just created
+    config_path = local_sensitive_file.kubeconfig.filename
   }
 
   git = {
