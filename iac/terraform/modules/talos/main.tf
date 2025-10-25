@@ -22,7 +22,7 @@ data "talos_machine_configuration" "controlplane" {
     yamlencode({
       machine = {
         install = {
-          disk = "/dev/vda"
+          disk = "/dev/nvme0n1"
         }
       }
     }),
@@ -30,7 +30,7 @@ data "talos_machine_configuration" "controlplane" {
       machine = {
         network = {
           interfaces = [{
-            interface = "eth0"
+            interface = "enp1s0"
             dhcp      = true
             vip = {
               ip = var.cluster_vip

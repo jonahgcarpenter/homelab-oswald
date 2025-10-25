@@ -38,12 +38,9 @@
 
 ### Before Talos Move:
 
-- get plain text secrets
-- fix chicken and egg problem with terraform since we dont have a VIP until flux bootstraps and installs kubevip
-- copy NUT client config to this repo
-- Longhorn backups
+- NUT client for talos
 - clean up repo, proper file names
-- decide wether or not to wipe and reinstall PVE-3 or simply rename it
+- remove pve-1&2 from cluster, rename pve-3 -> pve-0
 
 ### Problems:
 

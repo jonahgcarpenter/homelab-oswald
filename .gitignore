@@ -1,5 +1,6 @@
 # Secrets 
 unsealed-secret.yaml
+*.txt
 .env
 
 # Keys for FluxCD
