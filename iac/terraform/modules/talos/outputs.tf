@@ -13,3 +13,8 @@ output "client_configuration" {
   value       = talos_machine_secrets.this.client_configuration
   sensitive   = true
 }
+
+output "bootstrap" {
+  description = "The cluster readiness resource, used for dependency chains."
+  value       = talos_cluster_kubeconfig.this
+}

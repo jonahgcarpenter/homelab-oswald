@@ -21,8 +21,8 @@ variable "cluster_dns" {
   default     = null
 }
 
-variable "controlplane_subnet" {
-  description = "The CIDR of the control plane subnet (e.g., 192.168.1.0/24)."
+variable "cluster_vip" {
+  description = "The Virtual IP (VIP) or Load Balancer IP for the control plane."
   type        = string
 }
 

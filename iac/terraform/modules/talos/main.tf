@@ -27,25 +27,15 @@ data "talos_machine_configuration" "controlplane" {
       }
     }),
     yamlencode({
-      cluster = {
-        network = {
-          apiServer = {
-            loadBalancer = {
-              enabled = true
-            }
-          }
-        }
-      },
       machine = {
         network = {
-          interfaces = [
-            {
-              subnet = var.controlplane_subnet
-              vip = {
-                ip = regex("https://([^:]+):", var.cluster_endpoint)[0]
-              }
+          interfaces = [{
+            interface = "eth0"
+            dhcp      = true
+            vip = {
+              ip = var.cluster_vip
             }
-          ]
+          }]
         }
       }
     })

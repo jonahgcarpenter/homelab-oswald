@@ -1,18 +1,10 @@
 provider "kubernetes" {
-  host = var.cluster_endpoint
-
-  client_certificate     = base64decode(var.client_configuration.client_certificate)
-  client_key             = base64decode(var.client_configuration.client_key)
-  cluster_ca_certificate = base64decode(var.client_configuration.ca_certificate)
+  kubeconfig = var.kubeconfig
 }
 
 provider "flux" {
   kubernetes = {
-    host = var.cluster_endpoint
-
-    client_certificate     = base64decode(var.client_configuration.client_certificate)
-    client_key             = base64decode(var.client_configuration.client_key)
-    cluster_ca_certificate = base64decode(var.client_configuration.ca_certificate)
+    kubeconfig = var.kubeconfig
   }
 
   git = {
@@ -32,4 +24,8 @@ resource "flux_bootstrap_git" "this" {
   components           = ["source-controller", "kustomize-controller", "helm-controller", "notification-controller"]
   components_extra     = ["image-reflector-controller", "image-automation-controller"]
   watch_all_namespaces = true
+
+  depends_on = [
+    var.bootstrap_dependency
+  ]
 }

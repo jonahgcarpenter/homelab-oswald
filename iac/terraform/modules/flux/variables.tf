@@ -1,16 +1,12 @@
 variable "cluster_endpoint" {
-  description = "The FQDN or VIP of the cluster endpoint (e.g., https://192.168.4.100:6443)."
+  description = "The FQDN or VIP of the cluster endpoint."
   type        = string
 }
 
-variable "client_configuration" {
-  description = "The raw client configuration from talos_machine_secrets."
-  type = object({
-    ca_certificate     = string
-    client_certificate = string
-    client_key         = string
-  })
-  sensitive = true
+variable "kubeconfig" {
+  description = "The raw kubeconfig for the cluster."
+  type        = string
+  sensitive   = true
 }
 
 variable "git_repo_url" {
@@ -33,4 +29,10 @@ variable "ssh_private_key" {
   description = "The SSH private key to access the Git repository."
   type        = string
   sensitive   = true
+}
+
+variable "bootstrap_dependency" {
+  description = "A resource to explicitly depend on before running bootstrap."
+  type        = any
+  default     = null
 }
