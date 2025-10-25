@@ -24,8 +24,6 @@ spec:
               value: "true"
             - name: vip_interface
               value: ""
-            - name: vip_subnet
-              value: "192.168.4.0/24"
             - name: dns_mode
               value: first
             - name: cp_enable
