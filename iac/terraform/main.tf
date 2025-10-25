@@ -5,12 +5,13 @@ module "talos_cluster" {
   cluster_endpoint    = var.cluster_endpoint
   control_plane_nodes = var.control_plane_nodes
   cluster_dns         = var.cluster_dns
+  controlplane_subnet = var.controlplane_subnet
 }
 
 module "flux_cluster" {
   source = "./modules/flux"
 
-  bootstrap_node_ip    = var.control_plane_nodes[0]
+  cluster_endpoint     = var.cluster_endpoint
   client_configuration = module.talos_cluster.client_configuration
 
   git_repo_url    = "ssh://git@github.com/jonahgcarpenter/homelab-oswald.git"

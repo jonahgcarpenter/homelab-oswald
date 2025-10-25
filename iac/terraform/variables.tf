@@ -21,6 +21,11 @@ variable "cluster_dns" {
   default     = null
 }
 
+variable "controlplane_subnet" {
+  description = "The CIDR of the control plane subnet (e.g., 192.168.1.0/24)."
+  type        = string
+}
+
 # --- Flux Variables ---
 
 variable "flux_git_path" {

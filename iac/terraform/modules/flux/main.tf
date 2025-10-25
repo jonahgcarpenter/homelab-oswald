@@ -1,5 +1,5 @@
 provider "kubernetes" {
-  host = "https://${var.bootstrap_node_ip}:6443"
+  host = var.cluster_endpoint
 
   client_certificate     = base64decode(var.client_configuration.client_certificate)
   client_key             = base64decode(var.client_configuration.client_key)
@@ -8,7 +8,7 @@ provider "kubernetes" {
 
 provider "flux" {
   kubernetes = {
-    host = "https://${var.bootstrap_node_ip}:6443"
+    host = var.cluster_endpoint
 
     client_certificate     = base64decode(var.client_configuration.client_certificate)
     client_key             = base64decode(var.client_configuration.client_key)

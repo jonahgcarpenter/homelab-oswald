@@ -10,7 +10,7 @@ data "talos_machine_configuration" "controlplane" {
     yamlencode({
       cluster = {
         apiServer = {
-          certSANs = concat([var.cluster_dns], var.control_plane_nodes)
+          certSANs = [var.cluster_dns]
         }
       }
     }),
@@ -23,6 +23,29 @@ data "talos_machine_configuration" "controlplane" {
       machine = {
         install = {
           disk = "/dev/vda"
+        }
+      }
+    }),
+    yamlencode({
+      cluster = {
+        network = {
+          apiServer = {
+            loadBalancer = {
+              enabled = true
+            }
+          }
+        }
+      },
+      machine = {
+        network = {
+          interfaces = [
+            {
+              subnet = var.controlplane_subnet
+              vip = {
+                ip = regex("https://([^:]+):", var.cluster_endpoint)[0]
+              }
+            }
+          ]
         }
       }
     })

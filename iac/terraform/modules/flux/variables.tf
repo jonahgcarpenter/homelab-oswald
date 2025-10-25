@@ -1,14 +1,14 @@
-variable "bootstrap_node_ip" {
-  description = "The IP of one control plane node to connect to for bootstrap."
+variable "cluster_endpoint" {
+  description = "The FQDN or VIP of the cluster endpoint (e.g., https://192.168.4.100:6443)."
   type        = string
 }
 
 variable "client_configuration" {
   description = "The raw client configuration from talos_machine_secrets."
   type = object({
-    ca_certificate   = string
+    ca_certificate     = string
     client_certificate = string
-    client_key       = string
+    client_key         = string
   })
   sensitive = true
 }
