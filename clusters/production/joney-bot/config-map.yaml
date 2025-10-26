@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: joney-bot-config
+data:
+  LOG_LEVEL: "INFO"
+  CONTEXT_SUMMARY_COUNT: "10"

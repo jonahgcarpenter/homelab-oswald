@@ -1,5 +1,5 @@
 # Secrets 
-unsealed-secret.yaml
+*unsealed*
 *.txt
 .env
 
