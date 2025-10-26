@@ -33,16 +33,6 @@ spec:
                 secretKeyRef:
                   name: homepage-secrets
                   key: HAS_URL
-            - name: HOMEPAGE_VAR_PROXMOX_PVE1_URL
-              valueFrom:
-                secretKeyRef:
-                  name: homepage-secrets
-                  key: PROXMOX_PVE1_URL
-            - name: HOMEPAGE_VAR_PROXMOX_PVE2_URL
-              valueFrom:
-                secretKeyRef:
-                  name: homepage-secrets
-                  key: PROXMOX_PVE2_URL
             - name: HOMEPAGE_VAR_PROXMOX_PVE3_URL
               valueFrom:
                 secretKeyRef:
