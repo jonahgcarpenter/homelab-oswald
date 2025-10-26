@@ -1,6 +1,0 @@
-apiVersion: traefik.io/v1alpha1
-kind: ServersTransport
-metadata:
-  name: pve-1-insecure-transport
-spec:
-  insecureSkipVerify: true

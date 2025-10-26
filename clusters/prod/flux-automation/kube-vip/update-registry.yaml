@@ -1,8 +1,0 @@
-apiVersion: image.toolkit.fluxcd.io/v1beta2
-kind: ImageRepository
-metadata:
-  name: kube-vip-image
-  namespace: flux-system
-spec:
-  image: ghcr.io/kube-vip/kube-vip
-  interval: 5m
