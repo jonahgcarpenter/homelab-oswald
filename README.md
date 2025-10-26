@@ -36,13 +36,12 @@
 
 ### [Add List](https://github.com/stars/jonahgcarpenter/lists/homelab-todo)
 
-### Before Talos Move:
-
-- NUT client for talos
-- remove pve-1&2 from cluster, rename pve-3 -> pve-0
-
 ### Problems:
 
+- alert manager setup
+- fix WoLAN
+- NUT client for talos
+- rename pve-3 -> pve-0
 - split GPU between multiple LXCs instead of using passthrough
 - properly pass drives through to TrueNAS vm for smart values
 - track helm chart versions with flux automations
