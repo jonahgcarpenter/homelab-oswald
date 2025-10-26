@@ -1,0 +1,28 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pihole-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`pihole.home.jonahsserver.com`)
+      kind: Rule
+      services:
+        - name: pihole-web
+          namespace: pihole
+          port: 80
+  tls:
+    secretName: pihole-certificate-secret
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pihole-ui-ingress-certificate
+spec:
+  secretName: pihole-certificate-secret
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - pihole.home.jonahsserver.com
