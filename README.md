@@ -40,7 +40,7 @@
 
 - alert manager setup
 - fix WoLAN
-- check that NUT client works
+- check that NUT client works for shutdown
 - rename pve-3 -> pve-0
 - split GPU between multiple LXCs instead of using passthrough
 - properly pass drives through to TrueNAS vm for smart values
