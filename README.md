@@ -40,7 +40,7 @@
 
 - alert manager setup
 - fix WoLAN
-- NUT client for talos
+- check that NUT client works
 - rename pve-3 -> pve-0
 - split GPU between multiple LXCs instead of using passthrough
 - properly pass drives through to TrueNAS vm for smart values
