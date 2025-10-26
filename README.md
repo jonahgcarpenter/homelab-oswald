@@ -39,7 +39,6 @@
 ### Before Talos Move:
 
 - NUT client for talos
-- clean up repo, proper file names
 - remove pve-1&2 from cluster, rename pve-3 -> pve-0
 
 ### Problems:

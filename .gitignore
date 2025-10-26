@@ -1,11 +1,6 @@
 # Secrets 
 *unsealed*
-*.txt
 .env
-
-# Keys for FluxCD
-flux-ssh-key
-flux-ssh-key.pub
 
 # Terraform
 .terraform/
