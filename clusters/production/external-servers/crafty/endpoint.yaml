@@ -1,0 +1,16 @@
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: crafty-slice
+  labels:
+    kubernetes.io/service-name: crafty
+addressType: IPv4
+ports:
+  - name: https
+    protocol: TCP
+    port: 8443
+endpoints:
+  - addresses:
+      - "192.168.4.153"
+    conditions:
+      ready: true

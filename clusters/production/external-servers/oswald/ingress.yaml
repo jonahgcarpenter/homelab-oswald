@@ -1,0 +1,28 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: oswald-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`oswald.home.jonahsserver.com`)
+      kind: Rule
+      services:
+        - name: oswald
+          port: 8080
+          scheme: http
+  tls:
+    secretName: oswald-certificate-secret
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: oswald-ingress-certificate
+spec:
+  secretName: oswald-certificate-secret
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - oswald.home.jonahsserver.com

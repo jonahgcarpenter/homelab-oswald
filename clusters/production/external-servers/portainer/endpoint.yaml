@@ -1,0 +1,16 @@
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: portainer-slice
+  labels:
+    kubernetes.io/service-name: portainer
+addressType: IPv4
+ports:
+  - name: https
+    protocol: TCP
+    port: 9443
+endpoints:
+  - addresses:
+      - "192.168.4.92"
+    conditions:
+      ready: true

@@ -1,0 +1,29 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: portainer-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`portainer.home.jonahsserver.com`)
+      kind: Rule
+      services:
+        - name: portainer
+          port: 9443
+          scheme: https
+          serversTransport: portainer-insecure-transport
+  tls:
+    secretName: portainer-certificate-secret
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: portainer-ingress-certificate
+spec:
+  secretName: portainer-certificate-secret
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - portainer.home.jonahsserver.com
