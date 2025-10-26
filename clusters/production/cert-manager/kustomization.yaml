@@ -5,3 +5,5 @@ resources:
   - namespace.yaml
   - helm-repo.yaml
   - release.yaml
+  - sealed-api-token.yaml
+  - cert-issuer.yaml
