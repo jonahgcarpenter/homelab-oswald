@@ -34,3 +34,33 @@ spec:
               target: ["192.168.4.73"]
             static_configs:
               - targets: ["exporter-proxmox.monitoring.svc.cluster.local:9221"]
+
+    alertmanager:
+      alertmanagerSpec:
+        secrets:
+          - alertmanager-has-webhook
+
+      config:
+        global:
+          resolve_timeout: 5m
+
+        route:
+          group_by: ["namespace"]
+          group_wait: 30s
+          group_interval: 5m
+          repeat_interval: 12h
+          receiver: "home-assistant-webhook"
+          routes:
+            - receiver: "null"
+              matchers:
+                - alertname = "Watchdog"
+
+        receivers:
+          - name: "null"
+
+          - name: "home-assistant-webhook"
+            webhook_configs:
+              - url_file: /etc/alertmanager/secrets/alertmanager-has-webhook/has_webhook_url
+                send_resolved: true
+                http_config:
+                  http_method: POST
