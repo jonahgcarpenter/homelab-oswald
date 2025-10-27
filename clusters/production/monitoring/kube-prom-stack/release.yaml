@@ -29,7 +29,7 @@ spec:
           readOnly: true
 
       alerting:
-        policies.yaml: |
+        policies.yaml:
           apiVersion: 1
           policies:
             - orgId: 1
@@ -40,7 +40,7 @@ spec:
               group_wait: 30s
               group_interval: 5m
               repeat_interval: 4h
-        contactpoints.yaml: |
+        contactpoints.yaml:
           secret:
             apiVersion: 1
             contactPoints:
