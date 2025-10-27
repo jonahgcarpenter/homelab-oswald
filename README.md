@@ -38,6 +38,7 @@
 
 ### Problems:
 
+- pihole real-ip?
 - alert manager setup
 - fix WoLAN
 - check that NUT client works for shutdown
