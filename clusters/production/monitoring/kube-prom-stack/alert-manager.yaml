@@ -14,10 +14,9 @@ spec:
   receivers:
     - name: "has-webhook-receiver"
       webhookConfigs:
-        - urlFrom:
-            secretKeyRef:
-              name: contactpoint-has-webhook
-              key: webhook_url
+        - urlSecret:
+            name: contactpoint-has-webhook
+            key: webhook_url
           httpConfig:
             bearerTokenSecret:
               name: contactpoint-has-webhook
