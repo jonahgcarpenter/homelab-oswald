@@ -22,4 +22,4 @@ spec:
             bearerTokenSecret:
               name: contactpoint-has-webhook
               key: auth_header
-          send_resolved: true
+          sendResolved: true
