@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: has-webhook-config
+  labels:
+    alertmanagerConfig: "main"
+spec:
+  route:
+    receiver: "has-webhook-receiver"
+    groupWait: 30s
+    groupInterval: 5m
+    repeatInterval: 4h
+
+  receivers:
+    - name: "has-webhook-receiver"
+      webhookConfigs:
+        - urlFrom:
+            secretKeyRef:
+              name: contactpoint-has-webhook
+              key: webhook_url
+          httpConfig:
+            bearerTokenSecret:
+              name: contactpoint-has-webhook
+              key: auth_header
+          send_resolved: true

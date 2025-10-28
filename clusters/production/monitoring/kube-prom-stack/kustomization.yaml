@@ -5,7 +5,9 @@ resources:
   - namespace.yaml
   - helm-repo.yaml
   - sealed-ui-creds.yaml
+  - sealed-has-webhook.yaml
   - release.yaml
   - pve-dashboard.yaml
   - has-dashboard.yaml
+  - alert-manager.yaml
   - ingress.yaml
