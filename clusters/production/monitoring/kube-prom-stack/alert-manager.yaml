@@ -7,9 +7,13 @@ metadata:
 spec:
   route:
     receiver: "has-webhook-receiver"
+    groupBy:
+      - alertname
+      - namespace
     groupWait: 30s
     groupInterval: 5m
     repeatInterval: 4h
+    routes: []
 
   receivers:
     - name: "has-webhook-receiver"
