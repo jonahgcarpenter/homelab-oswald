@@ -7,8 +7,10 @@ metadata:
 spec:
   route:
     receiver: "has-webhook-receiver"
-    match_not:
-      - alertname: "Watchdog"
+    matchers:
+      - name: alertname
+        value: "Watchdog"
+        matchType: "!~"
     groupBy:
       - alertname
       - namespace
