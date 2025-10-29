@@ -44,7 +44,7 @@
 - alert manager alerts for proxmox
 - fix WoLAN
 - check that NUT client works for shutdown
-- rename pve-3 -> pve-0
+- rename pve-3 -> pve-0, update to v9
 - split GPU between multiple LXCs instead of using passthrough
 - properly pass drives through to TrueNAS vm for smart values
 - track helm chart versions with flux automations
