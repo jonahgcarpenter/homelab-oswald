@@ -40,7 +40,7 @@
 
 - Kubernetes / pod logs on web? no need for portainer or rancher just logs if I am not home
 - pihole real-ip?
-- alert manager setup
+- alert manager alerts for proxmox
 - fix WoLAN
 - check that NUT client works for shutdown
 - rename pve-3 -> pve-0
