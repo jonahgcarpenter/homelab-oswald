@@ -13,7 +13,10 @@ spec:
     groupWait: 30s
     groupInterval: 5m
     repeatInterval: 4h
-    routes: []
+    routes:
+      - receiver: "null"
+        match:
+          alertname: Watchdog
 
   receivers:
     - name: "has-webhook-receiver"
@@ -26,3 +29,4 @@ spec:
               name: contactpoint-has-webhook
               key: auth_header
           sendResolved: true
+    - name: "null"
