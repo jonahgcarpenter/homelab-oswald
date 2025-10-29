@@ -29,4 +29,3 @@ spec:
               name: contactpoint-has-webhook
               key: auth_header
           sendResolved: true
-    - name: "null"
