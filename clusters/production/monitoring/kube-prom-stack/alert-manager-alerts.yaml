@@ -37,3 +37,22 @@ spec:
           annotations:
             summary: "Proxmox host {{ $labels.name }} CPU usage high"
             description: "Host '{{ $labels.name }}' (ID: {{ $labels.id }}) has a CPU usage of {{ $value | humanizePercentage }}."
+
+        # Notifies if Host RAM usage is >75% for 10mins
+        - alert: ProxmoxHostMemoryHigh
+          expr: |
+            (
+              (
+                pve_memory_usage_bytes{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"}
+                /
+                pve_memory_size_bytes{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"}
+              )
+              * on (id, instance) group_left(name)
+              pve_node_info{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"}
+            ) > 0.75
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Proxmox host {{ $labels.name }} memory usage high"
+            description: "Host '{{ $labels.name }}' (ID: {{ $labels.id }}) has a memory usage of {{ $value | humanizePercentage }}."
