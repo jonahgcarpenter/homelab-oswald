@@ -9,5 +9,6 @@ resources:
   - release.yaml
   - pve-dashboard.yaml
   - has-dashboard.yaml
-  - alert-manager.yaml
+  - alert-manager-config.yaml
+  - alert-manager-alerts.yaml
   - ingress.yaml

@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: custom-alertmanager-rules
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: my-custom-alerts.rules
+      rules:
+        - alert: OSWALD-HELP-ME
+          expr: vector(1)
+          for: 1m
+          labels:
+            severity: none
+          annotations:
+            summary: "Test Alert (Watchdog)"
+            description: "This is a test alert to ensure the Prometheus -> Alertmanager pipeline is working."
