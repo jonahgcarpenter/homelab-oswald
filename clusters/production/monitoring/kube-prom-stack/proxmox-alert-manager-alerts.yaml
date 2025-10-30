@@ -1,12 +1,12 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: custom-alertmanager-rules
+  name: proxmox-general
   labels:
     release: kube-prometheus-stack
 spec:
   groups:
-    - name: oswald.rules
+    - name: proxmox.rules
       rules:
         # Notifies me if a proxmox lxc/vm is down for >5 mins
         - alert: ProxmoxGuestDown

@@ -10,5 +10,5 @@ resources:
   - pve-dashboard.yaml
   - has-dashboard.yaml
   - alert-manager-config.yaml
-  - alert-manager-alerts.yaml
+  - proxmox-alert-manager-alerts.yaml
   - ingress.yaml
