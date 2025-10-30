@@ -1,0 +1,50 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: has-general
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: has.rules
+      rules:
+        # HOME ASSISTANT DOWN
+        - alert: HomeAssistantDown
+          expr: |
+            up{job="has-exporter"} == 0
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Home Assistant is down"
+            description: "Prometheus has been unable to scrape the Home Assistant exporter for over 2 minutes."
+
+        # HOME ASSISTANT CPU HIGH (75%)
+        - alert: HomeAssistantCpuHigh
+          expr: |
+            (
+              1 - avg(rate(node_cpu_seconds_total{job="has-exporter", mode="idle"}[5m]))
+            ) * 100 > 75
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Home Assistant CPU usage high"
+            description: "Home Assistant has a CPU usage of {{ $value | humanize }}% (Threshold: 75%)."
+
+        # HOME ASSISTANT MEMORY HIGH (75%)
+        - alert: HomeAssistantMemoryHigh
+          expr: |
+            (
+              1 - (
+                node_memory_MemAvailable_bytes{job="has-exporter"}
+                /
+                node_memory_MemTotal_bytes{job="has-exporter"}
+              )
+            ) * 100 > 75
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Home Assistant memory usage high"
+            description: "Home Assistant has a memory usage of {{ $value | humanize }}% (Threshold: 75%)."
