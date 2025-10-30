@@ -39,9 +39,9 @@
 ### Problems:
 
 - continue to monitor helper scripts for frigate 16
-- Kubernetes / pod logs on web? no need for portainer or rancher just logs if I am not home
-- pihole real-ip?
-- fix WoLAN
+- cluster pod logs on web?
+- pihole displaying real-ip
+- fix WoLAN for talos nodes
 - check that NUT client works for shutdown
 - rename pve-3 -> pve-0, update to v9, remove has api user
 - split GPU between multiple LXCs instead of using passthrough
