@@ -6,13 +6,19 @@ metadata:
     release: kube-prometheus-stack
 spec:
   groups:
-    - name: my-custom-alerts.rules
+    - name: oswald.rules
       rules:
-        - alert: OSWALD-HELP-ME
-          expr: vector(1)
-          for: 1m
+        - alert: ProxmoxGuestDown
+          expr: |
+            pve_up{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"} == 0
+            and on (id, instance) group_left(name, type)
+            pve_guest_info{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", template!="1"}
+
+          for: 5m
+
           labels:
-            severity: none
+            severity: critical
+
           annotations:
-            summary: "Test Alert (Watchdog)"
-            description: "This is a test alert to ensure the Prometheus -> Alertmanager pipeline is working."
+            summary: "Proxmox guest {{ $labels.name }} is down"
+            description: "The Proxmox {{ $labels.type }} '{{ $labels.name }}' (ID: {{ $labels.id }}) is not running."
