@@ -38,6 +38,25 @@ spec:
             summary: "Proxmox host {{ $labels.name }} CPU usage high"
             description: "Host '{{ $labels.name }}' (ID: {{ $labels.id }}) has a CPU usage of {{ $value | humanizePercentage }}."
 
+        # Notifies if Host disk usage is >75% for 5mins
+        - alert: ProxmoxHostStorageHigh
+          expr: |
+            (
+              (
+                pve_disk_usage_bytes{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", id=~"storage/.+"}
+                /
+                pve_disk_size_bytes{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", id=~"storage/.+"}
+              )
+              * on (id, instance) group_left(storage)
+              pve_storage_info{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", storage!="local"}
+            ) > 0.75
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Proxmox storage {{ $labels.storage }} usage high"
+            description: "The Proxmox storage pool '{{ $labels.storage }}' (ID: {{ $labels.id }}) has disk usage of {{ $value | humanizePercentage }} (Threshold: 80%)."
+
         # Notifies if Host RAM usage is >75% for 10mins
         - alert: ProxmoxHostMemoryHigh
           expr: |
@@ -125,3 +144,26 @@ spec:
           annotations:
             summary: "Proxmox VM {{ $labels.name }} memory usage high"
             description: "The Proxmox VM (QEMU) '{{ $labels.name }}' (ID: {{ $labels.id }}) has memory usage of {{ $value | humanizePercentage }} (Threshold: 90%)."
+
+        # Notifies if LXC disk usage is >75% for 5mins
+        - alert: ProxmoxLxcGuestDiskHigh
+          expr: |
+            (
+              (
+                (
+                  pve_disk_usage_bytes{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"}
+                  /
+                  pve_disk_size_bytes{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"}
+                )
+                * on (id, instance) group_left(name, type)
+                pve_guest_info{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", template!="1", type="lxc"}
+              )
+              and on (id, instance)
+              (pve_up{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"} == 1)
+            ) > 0.75
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Proxmox LXC {{ $labels.name }} disk usage high"
+            description: "The Proxmox LXC '{{ $labels.name }}' (ID: {{ $labels.id }}) has disk usage of {{ $value | humanizePercentage }} (Threshold: 75%)."
