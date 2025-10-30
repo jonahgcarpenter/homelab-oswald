@@ -79,3 +79,49 @@ spec:
           annotations:
             summary: "Proxmox guest {{ $labels.name }} CPU usage high"
             description: "The Proxmox {{ $labels.type }} '{{ $labels.name }}' (ID: {{ $labels.id }}) has a CPU usage of {{ $value | humanizePercentage }}."
+
+        # Notifies if LXC RAM usage is >75% for 10mins
+        - alert: ProxmoxLxcGuestMemoryHigh
+          expr: |
+            (
+              (
+                (
+                  pve_memory_usage_bytes{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"}
+                  /
+                  pve_memory_size_bytes{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"}
+                )
+                * on (id, instance) group_left(name, type)
+                pve_guest_info{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", template!="1", type="lxc"}
+              )
+              and on (id, instance)
+              (pve_up{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"} == 1)
+            ) > 0.75
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Proxmox LXC {{ $labels.name }} memory usage high"
+            description: "The Proxmox LXC '{{ $labels.name }}' (ID: {{ $labels.id }}) has memory usage of {{ $value | humanizePercentage }} (Threshold: 75%)."
+
+        # Notifies if VM RAM usage is >90% for 10mins
+        - alert: ProxmoxVmGuestMemoryHigh
+          expr: |
+            (
+              (
+                (
+                  pve_memory_usage_bytes{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"}
+                  /
+                  pve_memory_size_bytes{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"}
+                )
+                * on (id, instance) group_left(name, type)
+                pve_guest_info{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", template!="1", type="qemu"}
+              )
+              and on (id, instance)
+              (pve_up{instance="exporter-proxmox.monitoring.svc.cluster.local:9221"} == 1)
+            ) > 0.90
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Proxmox VM {{ $labels.name }} memory usage high"
+            description: "The Proxmox VM (QEMU) '{{ $labels.name }}' (ID: {{ $labels.id }}) has memory usage of {{ $value | humanizePercentage }} (Threshold: 90%)."

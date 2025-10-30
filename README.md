@@ -41,10 +41,9 @@
 - continue to monitor helper scripts for frigate 16
 - Kubernetes / pod logs on web? no need for portainer or rancher just logs if I am not home
 - pihole real-ip?
-- alert manager alerts for proxmox
 - fix WoLAN
 - check that NUT client works for shutdown
-- rename pve-3 -> pve-0, update to v9
+- rename pve-3 -> pve-0, update to v9, remove has api user
 - split GPU between multiple LXCs instead of using passthrough
 - properly pass drives through to TrueNAS vm for smart values
 - track helm chart versions with flux automations
