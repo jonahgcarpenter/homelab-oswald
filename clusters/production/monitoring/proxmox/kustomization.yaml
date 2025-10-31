@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: monitoring
 resources:
-  - pve-deployment.yaml
-  - pve-service.yaml
+  - exporter-deployment.yaml
+  - exporter-service.yaml
   - sealed-api-token.yaml
   - dashboard.yaml
   - alerts.yaml
