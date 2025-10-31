@@ -1,7 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: has-general
+  name: alert-manager-has
   labels:
     release: kube-prometheus-stack
 spec:

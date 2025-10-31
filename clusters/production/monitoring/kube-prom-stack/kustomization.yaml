@@ -7,9 +7,5 @@ resources:
   - sealed-ui-creds.yaml
   - sealed-has-webhook.yaml
   - release.yaml
-  - pve-dashboard.yaml
-  - has-dashboard.yaml
   - alert-manager-config.yaml
-  - proxmox-alert-manager-alerts.yaml
-  - has-alert-manager-alerts.yaml
   - ingress.yaml

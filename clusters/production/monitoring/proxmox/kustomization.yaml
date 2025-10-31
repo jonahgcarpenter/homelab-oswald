@@ -5,3 +5,5 @@ resources:
   - pve-deployment.yaml
   - pve-service.yaml
   - sealed-api-token.yaml
+  - dashboard.yaml
+  - alerts.yaml
