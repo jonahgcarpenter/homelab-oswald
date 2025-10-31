@@ -109,3 +109,41 @@ spec:
           labels:
             issue: Longhorn node {{$labels.node}} experiences high CPU pressure.
             severity: warning
+
+        # backup is in the failed state
+        - alert: LonghornBackupFailed
+          annotations:
+            summary: "A Longhorn backup has failed."
+            description: "The backup '{{$labels.backup}}' for volume '{{$labels.volume}}' has entered an 'Error' (state 4)."
+          expr: longhorn_backup_state == 4
+          labels:
+            severity: critical
+
+        # backup is stuck for 1 hour indiciating a problem
+        - alert: LonghornBackupStuck
+          annotations:
+            summary: "A Longhorn backup is stuck."
+            description: "The backup '{{$labels.backup}}' for volume '{{$labels.volume}}' has been 'InProgress' (state 2) for over 1 hour."
+          expr: longhorn_backup_state == 2
+          for: 1h
+          labels:
+            severity: warning
+
+        # checks if the time since the last backup is > 24 hours (86400s) also checks that a backup has run at least once (timestamp > 0)
+        - alert: LonghornBackupsStale
+          annotations:
+            summary: "Longhorn backups are not running."
+            description: "The last successful backup for volume '{{$labels.volume}}' was over 24 hours ago. Scheduled backups may be failing or misconfigured."
+          expr: (time() - longhorn_volume_last_backup_at > 86400) and (longhorn_volume_last_backup_at > 0)
+          labels:
+            severity: warning
+
+        # alerts if 3 or more backups are in an error state meaning the target is the issue for 5mins
+        - alert: LonghornBackupTargetFailure
+          annotations:
+            summary: "Multiple backups failing, backup target may be down."
+            description: "There are {{ $value }} backups in an 'Error' state simultaneously. This may indicate a systemic problem with the backup target (S3/NFS)."
+          expr: count(longhorn_backup_state == 4) > 2
+          for: 5m
+          labels:
+            severity: critical
