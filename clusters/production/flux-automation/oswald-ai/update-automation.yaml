@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageUpdateAutomation
 metadata:
-  name: joney-bot-image-automation
+  name: oswald-ai-image-automation
   namespace: flux-system
 spec:
   interval: 30m
@@ -20,5 +20,5 @@ spec:
     push:
       branch: flux-staging
   update:
-    path: ./clusters/production/joney-bot
+    path: ./clusters/production/oswald-ai
     strategy: Setters

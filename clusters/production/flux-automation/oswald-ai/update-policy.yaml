@@ -1,11 +1,11 @@
 apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 metadata:
-  name: joney-bot
+  name: oswald-ai
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: joney-bot-image
+    name: oswald-ai-image
   policy:
     semver:
       range: ">=1.2.1"

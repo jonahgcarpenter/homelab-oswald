@@ -4,4 +4,4 @@ resources:
   - ./homepage
   - ./pve-exporter
   - ./kube-vip
-  - ./joney-bot
+  - ./oswald-ai

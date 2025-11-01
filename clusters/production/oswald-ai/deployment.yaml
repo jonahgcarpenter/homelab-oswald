@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oswald-ai
+  labels:
+    app: oswald-ai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oswald-ai
+  template:
+    metadata:
+      labels:
+        app: oswald-ai
+    spec:
+      containers:
+        - name: oswald-ai
+          image: jonahgcarpenter/joney-bot:v1.2.5 # {"$imagepolicy": "flux-system:oswald-ai"}
+          envFrom:
+            - configMapRef:
+                name: oswald-ai-config
+            - secretRef:
+                name: oswald-ai-secret
