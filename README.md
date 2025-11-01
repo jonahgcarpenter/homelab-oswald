@@ -44,7 +44,6 @@
 - check that NUT client works for shutdown
 - rename pve-3 -> pve-0, update to v9, remove has api user
 - split GPU between multiple LXCs instead of using passthrough
-- properly pass drives through to TrueNAS vm for smart values
 - track helm chart versions with flux automations
 
 ## Hardware
