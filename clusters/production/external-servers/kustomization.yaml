@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
-  - ./pve-3
+  - ./pve-0
   - ./portainer
   - ./crafty
   - ./unify
