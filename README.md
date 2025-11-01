@@ -42,7 +42,6 @@
 - cluster pod logs on web?
 - fix WoLAN for talos nodes (talos v1.12 in alpha)
 - check that NUT client works for shutdown
-- rename pve-3 -> pve-0, update to v9, remove has api user
 - split GPU between multiple LXCs instead of using passthrough
 - track helm chart versions with flux automations
 

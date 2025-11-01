@@ -1,9 +1,9 @@
 apiVersion: discovery.k8s.io/v1
 kind: EndpointSlice
 metadata:
-  name: pve-3-slice
+  name: pve-0-slice
   labels:
-    kubernetes.io/service-name: pve-3
+    kubernetes.io/service-name: pve-0
 addressType: IPv4
 ports:
   - name: https
