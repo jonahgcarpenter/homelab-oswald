@@ -58,7 +58,7 @@ spec:
       nodePort: ""
 
       # -- `spec.externalTrafficPolicy` for the DHCP Service
-      externalTrafficPolicy: Local
+      externalTrafficPolicy: Cluster
 
       # -- A fixed `spec.loadBalancerIP` for the DNS Service
       loadBalancerIP: "192.168.4.234"
