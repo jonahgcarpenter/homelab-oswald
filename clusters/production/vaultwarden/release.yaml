@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: vaultwarden
         namespace: vaultwarden
-      version: "0.43.1"
+      version: "0.44.0"
   values:
     ingress:
       enabled: false
