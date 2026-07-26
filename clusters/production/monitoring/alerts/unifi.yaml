@@ -43,3 +43,25 @@ spec:
             summary: "Port Link Speed Degraded: '{{ $labels.name }}'"
             description: >-
               '{{ $labels.port_id }}' is currently negotiating at {{ reReplaceAll "([kMGTPE])$" " $1" (humanize $value) }}bps. This is lower than its 7-day historical maximum, indicating a likely physical layer issue (bad cable/termination) or a downgraded device.
+
+        # UniFi Device CPU High
+        - alert: UniFiDeviceCpuHigh
+          expr: >
+            unpoller_device_cpu_utilization_ratio{name=~"(Dream Machine Special Edition|USW Pro Max 24 PoE)", type=~"usw|udm|udmp"} > 0.80
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "UniFi device CPU usage high: {{ $labels.name }}"
+            description: "'{{ $labels.name }}' has sustained CPU usage of {{ $value | humanizePercentage }} for more than 10 minutes (threshold: 80%)."
+
+        # UniFi Device Memory High
+        - alert: UniFiDeviceMemoryHigh
+          expr: >
+            unpoller_device_memory_utilization_ratio{name=~"(Dream Machine Special Edition|USW Pro Max 24 PoE)", type=~"usw|udm|udmp"} > 0.85
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "UniFi device memory usage high: {{ $labels.name }}"
+            description: "'{{ $labels.name }}' has sustained memory usage of {{ $value | humanizePercentage }} for more than 10 minutes (threshold: 85%)."
