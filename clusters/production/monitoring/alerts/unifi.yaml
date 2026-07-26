@@ -41,4 +41,5 @@ spec:
             severity: warning
           annotations:
             summary: "Port Link Speed Degraded: '{{ $labels.name }}'"
-            description: "'{{ $labels.port_id }}' is currently negotiating at {{ $value }} Mbps. This is lower than its 7-day historical maximum, indicating a likely physical layer issue (bad cable/termination) or a downgraded device."
+            description: >-
+              '{{ $labels.port_id }}' is currently negotiating at {{ reReplaceAll "([kMGTPE])$" " $1" (humanize $value) }}bps. This is lower than its 7-day historical maximum, indicating a likely physical layer issue (bad cable/termination) or a downgraded device.
