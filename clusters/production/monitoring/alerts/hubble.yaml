@@ -18,15 +18,18 @@ spec:
             summary: "High rate of policy drops detected in the cluster"
             description: 'The cluster is experiencing a surge in Policy Denied dropped packets ({{ $value | printf "%.1f" }} per second).'
 
-        # Network Reconnaissance / Port Scanning
-        - alert: HubblePortScanDetected
-          expr: sum(rate(hubble_flows_processed_total{verdict="DROPPED"}[5m])) > 20
+        # Unexpected VLAN Traffic
+        - alert: HubbleVlanIngressDropsHigh
+          expr: |
+            sum by (node, source_ip, destination_ip, protocol, reason, traffic_direction) (
+              rate(hubble_drop_total{reason="VLAN_FILTERED", traffic_direction="INGRESS"}[5m])
+            ) > 20
           for: 5m
           labels:
             severity: critical
           annotations:
-            summary: "Potential port scan detected from {{ $labels.source_workload }}"
-            description: 'Workload {{ $labels.source_workload }} has a rapidly surging rate of dropped flows ({{ $value | printf "%.1f" }} per second), indicating network reconnaissance or unauthorized scanning.'
+            summary: 'High ingress VLAN drop rate from {{ if $labels.source_ip }}{{ $labels.source_ip }}{{ else }}a non-IP source{{ end }} on {{ $labels.node }}'
+            description: 'Cilium is dropping {{ $value | printf "%.1f" }} VLAN packets per second on {{ $labels.node }} from {{ if $labels.source_ip }}{{ $labels.source_ip }}{{ else }}an ARP or non-IP source{{ end }} to {{ if $labels.destination_ip }}{{ $labels.destination_ip }}{{ else }}an unknown or broadcast destination{{ end }} (protocol={{ $labels.protocol }}, direction={{ $labels.traffic_direction }}, reason={{ $labels.reason }}).'
 
         # Command & Control / Exfiltration (DNS)
         - alert: HubbleHighNXDomainRate
