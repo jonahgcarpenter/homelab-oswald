@@ -1,0 +1,13 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nestledger-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`nestledger.home.jonahsserver.com`)
+      kind: Rule
+      services:
+        - name: nestledger-service
+          port: 80

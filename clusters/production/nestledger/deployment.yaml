@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nestledger
+  labels:
+    app: nestledger
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nestledger
+  template:
+    metadata:
+      labels:
+        app: nestledger
+    spec:
+      containers:
+        - name: nestledger
+          image: ghcr.io/jonahgcarpenter/nestledger:v1.0.0
+
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+
+          volumeMounts:
+            - name: storage-volume
+              mountPath: /app/data
+
+      volumes:
+        - name: storage-volume
+          persistentVolumeClaim:
+            claimName: nestledger-pvc
