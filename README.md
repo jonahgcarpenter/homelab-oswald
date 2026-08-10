@@ -12,7 +12,7 @@
 
 ### [Rack](https://sysracks.com/product/18u-24-depth-wall-mount-19-enclosure-srw-18-600/?srsltid=AfmBOooVzd62bt7PuxUhbTfJI8JVjD90CEOhDN1CtM2Ggj_Z5FPoegax#)
 
-### [2x U7 Lite](https://store.ui.com/us/en/category/all-wifi/products/u7-lite)
+### [U7 Lite](https://store.ui.com/us/en/category/all-wifi/products/u7-lite)
 
 ### [UDM-SE](https://store.ui.com/us/en/category/all-cloud-gateways/products/udm-se)
 
