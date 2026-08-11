@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: grafana
         namespace: monitoring
-      version: "7.2.0"
+      version: "7.3.0"
   values:
     chunksCache:
       enabled: false
