@@ -7,6 +7,7 @@ data:
   LLM_GATEWAY_URL: "http://bifrost.bifrost.svc.cluster.local:8080"
   LLM_GATEWAY_MODEL: "hf.co/HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF:IQ4_XS"
   LLM_GATEWAY_EMBEDDING_MODEL: "nomic-embed-text:v1.5"
+  LLM_GATEWAY_TIMEOUT: "86400"
   BLUEBUBBLES_LISTEN_PORT: "8090"
   HOME_ASSISTANT_LISTEN_PORT: "8000"
   MODEL_CONTEXT_WINDOW: "262144"
