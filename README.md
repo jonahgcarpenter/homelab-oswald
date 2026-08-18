@@ -4,11 +4,6 @@
   <img width="100%" alt="Server Rack" src="https://github.com/user-attachments/assets/8f5cf42e-cb38-40fd-9cf0-33d9fbe08f27" />
 </p>
 
-
-## Todo
-
-### [Add List](https://github.com/stars/jonahgcarpenter/lists/homelab-todo)
-
 ## Hardware
 
 ### [Rack](https://sysracks.com/product/18u-24-depth-wall-mount-19-enclosure-srw-18-600/?srsltid=AfmBOooVzd62bt7PuxUhbTfJI8JVjD90CEOhDN1CtM2Ggj_Z5FPoegax#)
