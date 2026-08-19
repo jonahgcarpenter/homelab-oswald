@@ -77,10 +77,6 @@ spec:
           - job_name: "unpoller"
             static_configs:
               - targets: ["unpoller.monitoring.svc.cluster.local:9130"]
-          - job_name: "portfolio-exporter"
-            metrics_path: /metrics
-            static_configs:
-              - targets: ["portfolio-service.portfolio.svc:80"]
 
     alertmanager:
       alertmanagerSpec:

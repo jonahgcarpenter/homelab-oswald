@@ -10,7 +10,6 @@ resources:
   - node-temps.yaml
   - oswald-ai.yaml
   - pihole.yaml
-  - portfolio.yaml
   - proxmox.yaml
   - unifi-aps.yaml
   - unifi-clients.yaml
