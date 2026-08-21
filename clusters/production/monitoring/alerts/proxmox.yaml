@@ -208,3 +208,117 @@ spec:
           annotations:
             summary: "High GPU Temperature on {{ $labels.instance }}"
             description: 'The GPU temperature is {{ $value | printf "%.1f" }}°C (Threshold: 75°C).'
+
+        - alert: ProxmoxDiskSmartHealthFailed
+          expr: |
+            smartmon_device_smart_healthy{job="proxmox-exporter"} == 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "SMART health check failed for {{ $labels.disk }}"
+            description: "Disk {{ $labels.disk }} on {{ $labels.instance }} has failed its SMART health assessment."
+
+        - alert: ProxmoxDiskMissing
+          expr: |
+            (count(smartmon_device_info{job="proxmox-exporter"}) < 4)
+            and on ()
+            (max(up{job="proxmox-exporter"}) == 1)
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "A monitored Proxmox disk is missing"
+            description: "Only {{ $value | humanize }} of the four expected Proxmox disks have SMART metrics."
+
+        - alert: ProxmoxDiskPendingSectors
+          expr: |
+            smartmon_current_pending_sector_raw_value{job="proxmox-exporter"} > 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Pending sectors detected on {{ $labels.disk }}"
+            description: "Disk {{ $labels.disk }} has {{ $value | humanize }} sectors waiting to be remapped."
+
+        - alert: ProxmoxDiskUncorrectableSectors
+          expr: |
+            sum by (instance, disk, type) (
+              smartmon_offline_uncorrectable_raw_value{job="proxmox-exporter"}
+              or
+              smartmon_reported_uncorrect_raw_value{job="proxmox-exporter"}
+            ) > 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Uncorrectable sectors detected on {{ $labels.disk }}"
+            description: "Disk {{ $labels.disk }} has {{ $value | humanize }} uncorrectable sector errors."
+
+        - alert: ProxmoxDiskTemperatureCritical
+          expr: |
+            smartmon_temperature_celsius_raw_value{job="proxmox-exporter", type="sat"} > 55
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Critical disk temperature on {{ $labels.disk }}"
+            description: 'Disk {{ $labels.disk }} has been at {{ $value | printf "%.1f" }}°C for over 5 minutes.'
+
+        - alert: ProxmoxSmartCollectorStale
+          expr: |
+            time() - smartmon_smartctl_run{job="proxmox-exporter"} > 15 * 60
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "SMART metrics are stale for {{ $labels.disk }}"
+            description: "SMART collection for {{ $labels.disk }} has not completed in {{ $value | humanizeDuration }}."
+
+        - alert: ProxmoxDiskSmartUnavailable
+          expr: |
+            (smartmon_device_smart_available{job="proxmox-exporter", type="sat"} == 0)
+            or
+            (smartmon_device_smart_enabled{job="proxmox-exporter", type="sat"} == 0)
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "SMART is unavailable for {{ $labels.disk }}"
+            description: "SMART monitoring is unavailable or disabled for SATA disk {{ $labels.disk }}."
+
+        - alert: ProxmoxDiskReallocatedSectors
+          expr: |
+            smartmon_reallocated_sector_ct_raw_value{job="proxmox-exporter"} > 0
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Reallocated sectors detected on {{ $labels.disk }}"
+            description: "Disk {{ $labels.disk }} has {{ $value | humanize }} reallocated sectors."
+
+        - alert: ProxmoxDiskCrcErrorsIncreasing
+          expr: |
+            increase(smartmon_udma_crc_error_count_raw_value{job="proxmox-exporter"}[1h]) > 0
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "CRC errors are increasing on {{ $labels.disk }}"
+            description: "Disk {{ $labels.disk }} recorded {{ $value | humanize }} additional UDMA CRC errors in the last hour. Check its data and power connections."
+
+        - alert: ProxmoxDiskTemperatureHigh
+          expr: |
+            (
+              smartmon_temperature_celsius_raw_value{job="proxmox-exporter", type="sat"} > 45
+            )
+            and on (instance, disk, type)
+            (
+              smartmon_temperature_celsius_raw_value{job="proxmox-exporter", type="sat"} <= 55
+            )
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High disk temperature on {{ $labels.disk }}"
+            description: 'Disk {{ $labels.disk }} has been at {{ $value | printf "%.1f" }}°C for over 15 minutes.'
