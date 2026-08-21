@@ -11,6 +11,7 @@ resources:
   - oswald-ai.yaml
   - pihole.yaml
   - proxmox.yaml
+  - truenas.yaml
   - unifi-aps.yaml
   - unifi-clients.yaml
   - unifi-dpi.yaml
