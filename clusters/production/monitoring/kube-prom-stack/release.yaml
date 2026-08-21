@@ -77,6 +77,9 @@ spec:
           - job_name: "unpoller"
             static_configs:
               - targets: ["unpoller.monitoring.svc.cluster.local:9130"]
+          - job_name: "truenas-exporter"
+            static_configs:
+              - targets: ["truenas-exporter.monitoring.svc.cluster.local:9100"]
 
     alertmanager:
       alertmanagerSpec:

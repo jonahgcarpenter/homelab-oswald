@@ -5,6 +5,7 @@ resources:
   - ./kube-prom-stack
   - ./loki-alloy
   - ./proxmox
+  - ./truenas
   - ./longhorn
   - ./unpoller
   - ./alerts

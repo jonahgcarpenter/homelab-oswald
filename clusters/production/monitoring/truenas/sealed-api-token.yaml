@@ -1,0 +1,14 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: truenas-exporter-secret
+  namespace: monitoring
+spec:
+  encryptedData:
+    apiKey: AgAPlb+58cma+9h7VoTI4YTVAZZlB8kVftIlOuB3qmS26ibvniI3lcB8xO6N2nJfDND26n0Ftj0vwBOBVKARA0PtbU+wjRP61/aD+UfMHrBNUoSwH638Xl+0DmpDtZVpcgXbiAJjer9djHOLSLZM4q3dOh4wg0hAsnmy5fyYkody3a8ZDmLwxN7Xzr29aG0sY8eSSJRvnv5a10Le6DRIbNGVVgOg//02DJYqODnKLlA/XIXDWYeqXAGxvKnPsIEPwtQVx964ZctEPFGW+ldxAAQJ1IiUi95qOTMi4/awLeV5qtlwWIdyDr0s3FqS9b/ZvbVfSJqccnZiKUp6fbxyGf1ELHPGVbsGOgFgTF9EyyEgRIoyyJuVAUoRC9KWWOGGBEjIQd97ftr4BOD5pAq6XOAMPPAVXthWUhXGEeTYpkxW3G1mnQ9U8uEKcG0eQJdLF2MYlx8uTZy5RSK+l+O3TeiKobtJJhVEIX/OTstrR6vGStQ22mmyrgyLMKCw+gwgguvYu6LQyZ6xXdtlhg8ul3ZOgsCTcPArEEvefExsUyZa1Ttn3xzD0q2Xb7m7apFGsp9a/72g4dyjNq36Y9UHlhZr/97hrYWyPQwa1tTUCO7+gCMU2RpmJlL3oKRZuNICqxbnP6cL5+MJALy2Ztdxd8nGweUTcOXbxD2W+lSNVsM2EffslEDWniws+5qskMPbSnKN5iBqvZL0RLlcVpKR3llX68vWiR0DJfD8H9p3eEgQYtGSZX76a+afIaAsEyociUEo2Kz3lh3G/l/a1ZiSMYqa6H0=
+  template:
+    metadata:
+      name: truenas-exporter-secret
+      namespace: monitoring
+    type: Opaque

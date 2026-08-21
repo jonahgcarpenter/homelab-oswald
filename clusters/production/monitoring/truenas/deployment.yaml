@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: truenas-exporter
+  labels:
+    app: truenas-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: truenas-exporter
+  template:
+    metadata:
+      labels:
+        app: truenas-exporter
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: truenas-exporter
+          image: ghcr.io/mlgruby/truenas-exporter-rs:v0.5.7
+          env:
+            - name: TRUENAS_EXPORTER__TRUENAS__HOST
+              value: "192.168.4.110:80"
+            - name: TRUENAS_EXPORTER__TRUENAS__API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: truenas-exporter-secret
+                  key: apiKey
+            - name: TRUENAS_EXPORTER__TRUENAS__USE_TLS
+              value: "false"
+            - name: TRUENAS_EXPORTER__TRUENAS__VERIFY_SSL
+              value: "false"
+            - name: TRUENAS_EXPORTER__SERVER__ADDR
+              value: "0.0.0.0"
+            - name: TRUENAS_EXPORTER__SERVER__PORT
+              value: "9100"
+            - name: TRUENAS_EXPORTER__METRICS__SCRAPE_INTERVAL_SECONDS
+              value: "60"
+          ports:
+            - name: metrics
+              containerPort: 9100
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: metrics
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: metrics
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 25m
+              memory: 32Mi
+            limits:
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
