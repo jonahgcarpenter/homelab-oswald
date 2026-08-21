@@ -26,14 +26,14 @@ spec:
           image: ghcr.io/mlgruby/truenas-exporter-rs:v0.5.7
           env:
             - name: TRUENAS_EXPORTER__TRUENAS__HOST
-              value: "192.168.4.110:80"
+              value: "192.168.4.110:443"
             - name: TRUENAS_EXPORTER__TRUENAS__API_KEY
               valueFrom:
                 secretKeyRef:
                   name: truenas-exporter-secret
                   key: apiKey
             - name: TRUENAS_EXPORTER__TRUENAS__USE_TLS
-              value: "false"
+              value: "true"
             - name: TRUENAS_EXPORTER__TRUENAS__VERIFY_SSL
               value: "false"
             - name: TRUENAS_EXPORTER__SERVER__ADDR
