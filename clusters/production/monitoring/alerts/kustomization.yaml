@@ -8,4 +8,5 @@ resources:
   - longhorn.yaml
   - proxmox.yaml
   - talos.yaml
+  - truenas.yaml
   - unifi.yaml

@@ -1,0 +1,235 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: alert-manager-truenas
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: truenas.rules
+      rules:
+        - alert: TrueNASExporterDown
+          expr: |
+            up{job="truenas-exporter"} == 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "TrueNAS exporter is down"
+            description: "Prometheus has been unable to scrape the TrueNAS exporter at {{ $labels.instance }} for over 5 minutes."
+
+        - alert: TrueNASApiUnavailable
+          expr: |
+            (truenas_up{job="truenas-exporter"} == 0)
+            and on (instance)
+            (up{job="truenas-exporter"} == 1)
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "TrueNAS API is unavailable"
+            description: "The exporter is reachable, but it has been unable to communicate with the TrueNAS API for over 5 minutes."
+
+        - alert: TrueNASPoolUnhealthy
+          expr: |
+            truenas_pool_health{job="truenas-exporter"} == 0
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "TrueNAS pool {{ $labels.pool }} is unhealthy"
+            description: "Pool {{ $labels.pool }} has reported status {{ $labels.status }} for over 2 minutes."
+
+        - alert: TrueNASPoolCapacityCritical
+          expr: |
+            (
+              truenas_pool_allocated_bytes{job="truenas-exporter"}
+              /
+              truenas_pool_capacity_bytes{job="truenas-exporter"}
+            ) > 0.90
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "TrueNAS pool {{ $labels.pool }} is critically full"
+            description: "Pool {{ $labels.pool }} has been {{ $value | humanizePercentage }} full for over 10 minutes."
+
+        - alert: TrueNASVdevErrors
+          expr: |
+            sum by (instance, pool, vdev, type) (
+              truenas_pool_vdev_error_count{job="truenas-exporter"}
+            ) > 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "TrueNAS VDev errors detected on {{ $labels.vdev }}"
+            description: "Pool {{ $labels.pool }} VDev {{ $labels.vdev }} has {{ $value | humanize }} {{ $labels.type }} errors."
+
+        - alert: TrueNASPoolScrubErrors
+          expr: |
+            truenas_pool_scrub_errors{job="truenas-exporter"} > 0
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "TrueNAS pool {{ $labels.pool }} scrub found errors"
+            description: "The last scrub of pool {{ $labels.pool }} found {{ $value | humanize }} errors."
+
+        - alert: TrueNASBootPoolUnhealthy
+          expr: |
+            truenas_boot_pool_health{job="truenas-exporter"} == 0
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "TrueNAS boot pool is unhealthy"
+            description: "The TrueNAS boot pool has reported an unhealthy state for over 5 minutes."
+
+        - alert: TrueNASBootPoolScrubErrors
+          expr: |
+            truenas_boot_pool_scrub_errors{job="truenas-exporter"} > 0
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "TrueNAS boot pool scrub found errors"
+            description: "The last boot-pool scrub found {{ $value | humanize }} errors."
+
+        - alert: TrueNASBootPoolCapacityCritical
+          expr: |
+            truenas_boot_pool_used_ratio{job="truenas-exporter"} > 0.90
+          for: 10m
+          labels:
+            severity: critical
+          annotations:
+            summary: "TrueNAS boot pool is critically full"
+            description: "The boot pool has been {{ $value | humanizePercentage }} full for over 10 minutes."
+
+        - alert: TrueNASCriticalAlert
+          expr: |
+            truenas_alert_info{
+              job="truenas-exporter",
+              active="true",
+              level=~"ERROR|CRITICAL",
+              message!~".*[Rr]eplication.*([Ff]ail|[Ee]rror).*"
+            } == 1
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "TrueNAS reported a {{ $labels.level }} alert"
+            description: "{{ $labels.message }}"
+
+        - alert: TrueNASReplicationFailed
+          expr: |
+            max_over_time(
+              truenas_alert_info{
+                job="truenas-exporter",
+                active="true",
+                level=~"WARNING|ERROR|CRITICAL",
+                message=~".*[Rr]eplication.*([Ff]ail|[Ee]rror).*"
+              }[10m]
+            ) == 1
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "TrueNAS replication job failed"
+            description: "{{ $labels.message }}"
+
+        - alert: TrueNASPoolCapacityWarning
+          expr: |
+            (
+              (
+                truenas_pool_allocated_bytes{job="truenas-exporter"}
+                /
+                truenas_pool_capacity_bytes{job="truenas-exporter"}
+              ) > 0.80
+            )
+            and on (instance, pool)
+            (
+              (
+                truenas_pool_allocated_bytes{job="truenas-exporter"}
+                /
+                truenas_pool_capacity_bytes{job="truenas-exporter"}
+              ) <= 0.90
+            )
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: "TrueNAS pool {{ $labels.pool }} capacity is high"
+            description: "Pool {{ $labels.pool }} has been {{ $value | humanizePercentage }} full for over 15 minutes."
+
+        - alert: TrueNASPoolScrubStale
+          expr: |
+            (
+              time() - truenas_pool_last_scrub_seconds{job="truenas-exporter"}
+              > 45 * 24 * 60 * 60
+            )
+            and
+            truenas_pool_last_scrub_seconds{job="truenas-exporter"} > 0
+          for: 1h
+          labels:
+            severity: warning
+          annotations:
+            summary: "TrueNAS pool {{ $labels.pool }} scrub is stale"
+            description: "Pool {{ $labels.pool }} has not completed a scrub in {{ $value | humanizeDuration }}."
+
+        - alert: TrueNASBootPoolCapacityWarning
+          expr: |
+            (
+              truenas_boot_pool_used_ratio{job="truenas-exporter"} > 0.80
+            )
+            and
+            (
+              truenas_boot_pool_used_ratio{job="truenas-exporter"} <= 0.90
+            )
+          for: 15m
+          labels:
+            severity: warning
+          annotations:
+            summary: "TrueNAS boot pool capacity is high"
+            description: "The boot pool has been {{ $value | humanizePercentage }} full for over 15 minutes."
+
+        - alert: TrueNASServiceDown
+          expr: |
+            truenas_service_status{
+              job="truenas-exporter",
+              service=~"nfs|cifs"
+            } == 0
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "TrueNAS {{ $labels.service }} service is down"
+            description: "The expected TrueNAS {{ $labels.service }} service has been stopped for over 5 minutes."
+
+        - alert: TrueNASNativeWarning
+          expr: |
+            truenas_alert_info{
+              job="truenas-exporter",
+              active="true",
+              level="WARNING",
+              message!~".*[Rr]eplication.*([Ff]ail|[Ee]rror).*"
+            } == 1
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "TrueNAS reported a warning"
+            description: "{{ $labels.message }}"
+
+        - alert: TrueNASSnapshotTaskFailed
+          expr: |
+            truenas_snapshot_task_status{
+              job="truenas-exporter",
+              state=~"ERROR|FAILED"
+            } == 1
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "TrueNAS snapshot task failed for {{ $labels.dataset }}"
+            description: "The snapshot task for dataset {{ $labels.dataset }} has reported state {{ $labels.state }} for over 5 minutes."
