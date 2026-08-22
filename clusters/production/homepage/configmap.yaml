@@ -53,12 +53,12 @@ data:
         - PiHole:
             icon: pi-hole.png
             href: https://pihole.home.jonahsserver.com/
-            widget:
-              type: pihole
-              url: http://pihole-web.pihole
-              version: 6
-              key: {{HOMEPAGE_VAR_PIHOLE_PASSWORD}}
-              fields: ["queries", "blocked", "blocked_percent", "gravity"]
+            # widget:
+            #   type: pihole
+            #   url: http://pihole-web.pihole
+            #   version: 6
+            #   key: {{HOMEPAGE_VAR_PIHOLE_PASSWORD}}
+            #   fields: ["queries", "blocked", "blocked_percent", "gravity"]
 
     - Monitoring & Management:
         - Grafana:
@@ -67,11 +67,11 @@ data:
         - Pterodactyl-Panel:
             icon: pterodactyl.png
             href: https://pterodactyl-panel.home.jonahsserver.com/
-            widget:
-              type: pterodactyl
-              url: {{HOMEPAGE_VAR_PTERODACTYL_URL}}
-              key: {{HOMEPAGE_VAR_PTERODACTYL_API_KEY}}
-              fields: ["nodes", "servers"]
+            # widget:
+            #   type: pterodactyl
+            #   url: {{HOMEPAGE_VAR_PTERODACTYL_URL}}
+            #   key: {{HOMEPAGE_VAR_PTERODACTYL_API_KEY}}
+            #   fields: ["nodes", "servers"]
         - Nestledger:
             icon: mdi-chart-donut
             href: https://nestledger.home.jonahsserver.com/
