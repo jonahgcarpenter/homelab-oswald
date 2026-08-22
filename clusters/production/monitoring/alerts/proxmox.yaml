@@ -8,20 +8,33 @@ spec:
   groups:
     - name: proxmox.rules
       rules:
-        # Notifies me if a whitelisted proxmox lxc/vm is down for >5 mins
+        # Notifies if a Proxmox LXC/VM is down for >5 minutes and
+        # was running for the majority of the previous 24 hours.
         - alert: ProxmoxGuestDown
           expr: |
             (
-              pve_up{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter"}
-              * on (id, instance) group_left(name, type)
-              pve_guest_info{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter", template!="1", name=~"ollama|frigate|truenas"}
-            ) == 0
+              (
+                pve_up{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter"} == 0
+              )
+              and on (id, instance)
+              (
+                avg_over_time(
+                  pve_up{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter"}[24h]
+                ) > 0.5
+              )
+              and on (id, instance)
+              (
+                pve_up{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter"} offset 23h
+              )
+            )
+            * on (id, instance) group_left(name, type)
+            pve_guest_info{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter", template!="1"}
           for: 5m
           labels:
             severity: critical
           annotations:
             summary: "Proxmox guest {{ $labels.name }} is down"
-            description: "The Proxmox {{ $labels.type }} '{{ $labels.name }}' (ID: {{ $labels.id }}) is not running."
+            description: "The Proxmox {{ $labels.type }} '{{ $labels.name }}' (ID: {{ $labels.id }}) is not running and was running for the majority of the previous 24 hours."
 
         # Notifies if Host CPU usage is >75% for 10mins
         - alert: ProxmoxHostCpuHigh
@@ -145,8 +158,7 @@ spec:
             summary: "Proxmox VM {{ $labels.name }} memory usage high"
             description: "The Proxmox VM (QEMU) '{{ $labels.name }}' (ID: {{ $labels.id }}) has memory usage of {{ $value | humanizePercentage }} (Threshold: 90%)."
 
-        # Notifies if LXC disk usage is >75% for 5mins
-        # Ignores Ollama LXC
+        # Notifies if LXC disk usage is >80% for 5mins
         - alert: ProxmoxLxcGuestDiskHigh
           expr: |
             (
@@ -157,17 +169,17 @@ spec:
                   pve_disk_size_bytes{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter"}
                 )
                 * on (id, instance) group_left(name, type)
-                pve_guest_info{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter", template!="1", type="lxc", name!="ollama"}
+                pve_guest_info{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter", template!="1", type="lxc"}
               )
               and on (id, instance)
               (pve_up{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter"} == 1)
-            ) > 0.75
+            ) > 0.80
           for: 5m
           labels:
             severity: warning
           annotations:
             summary: "Proxmox LXC {{ $labels.name }} disk usage high"
-            description: "The Proxmox LXC '{{ $labels.name }}' (ID: {{ $labels.id }}) has disk usage of {{ $value | humanizePercentage }} (Threshold: 75%)."
+            description: "The Proxmox LXC '{{ $labels.name }}' (ID: {{ $labels.id }}) has disk usage of {{ $value | humanizePercentage }} (Threshold: 80%)."
 
         # Notifies if CPU is >80C for 5mins
         - alert: ProxmoxCPUTempHigh
