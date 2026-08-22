@@ -201,7 +201,7 @@ spec:
 
         # Triggers if GPU >75C for 5mins
         - alert: ProxmoxGPUTempHigh
-          expr: max by (instance) (node_hwmon_temp_celsius{job="proxmox-exporter", chip="0000:08:01_0_0000:09:00_0"}) > 75
+          expr: max by (instance) (node_hwmon_temp_celsius{job="proxmox-exporter", chip="0000:08:01_0_0000:09:00_0", sensor="temp2"}) > 75
           for: 5m
           labels:
             severity: warning
