@@ -2061,7 +2061,7 @@ data:
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "max(node_hwmon_temp_celsius{job=\"proxmox-exporter\", chip=\"0000:08:01_0_0000:09:00_0\"})",
+              "expr": "node_hwmon_temp_celsius{job=\"proxmox-exporter\", chip=\"0000:08:01_0_0000:09:00_0\", sensor=\"temp2\"}",
               "hide": false,
               "instant": false,
               "legendFormat": "GPU",
