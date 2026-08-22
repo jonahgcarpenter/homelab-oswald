@@ -14,21 +14,12 @@ spec:
       version: "2.1.36"
   values:
     image:
-      tag: "v1.6.2"
+      tag: "v1.6.11"
 
     bifrost:
       encryptionKeySecret:
         name: "bifrost-encryption-key"
         key: "encryption-key"
-      providers:
-        ollama:
-          keys:
-            - name: "Ollama"
-              value: ""
-              weight: 1
-              models: ["*"]
-              ollama_key_config:
-                url: "http://192.168.4.106:11434"
 
     storage:
       mode: sqlite
