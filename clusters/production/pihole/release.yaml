@@ -421,7 +421,7 @@ spec:
     # -- list of adlists to import during initial start of the container
     # If you want to provide blocklists, add them here.
     adlists:
-      - https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/hosts/pro.txt
+      - https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/pro.txt
 
     # -- list of whitelisted domains to import during initial start of the container
     whitelist: {}
