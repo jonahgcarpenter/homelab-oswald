@@ -44,7 +44,7 @@ data:
             href: https://longhorn.home.jonahsserver.com/
 
     - Networking:
-        - Unify:
+        - Unifi:
             icon: ubiquiti.png
             href: https://unifi.home.jonahsserver.com/
         - Hubble:
