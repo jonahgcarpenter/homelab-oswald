@@ -52,7 +52,7 @@ data:
             href: https://hubble.home.jonahsserver.com/
         - PiHole:
             icon: pi-hole.png
-            href: https://pihole.home.jonahsserver.com/
+            href: https://pihole.home.jonahsserver.com/admin
             # widget:
             #   type: pihole
             #   url: http://pihole-web.pihole
