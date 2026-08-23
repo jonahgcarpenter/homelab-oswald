@@ -24,6 +24,8 @@ spec:
           env:
             - name: BASE_URL
               value: "http://searxng:8080/"
+            - name: SEARXNG_PORT
+              value: "8080"
           volumeMounts:
             - name: config-volume
               mountPath: /etc/searxng/settings.yml
