@@ -123,7 +123,7 @@ spec:
                   pve_memory_size_bytes{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter"}
                 )
                 * on (id, instance) group_left(name, type)
-                pve_guest_info{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter", template!="1", type="lxc"}
+                pve_guest_info{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter", template!="1", type="lxc", id!="lxc/103"}
               )
               and on (id, instance)
               (pve_up{instance="exporter-proxmox.monitoring.svc.cluster.local:9221", job="proxmox-ve-exporter"} == 1)
