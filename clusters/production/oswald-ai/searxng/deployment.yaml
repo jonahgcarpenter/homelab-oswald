@@ -21,14 +21,21 @@ spec:
             - containerPort: 8080
               name: http
           env:
-            - name: BASE_URL
-              value: "http://searxng:8080/"
+            - name: SEARXNG_BASE_URL
+              value: "http://searxng.oswald-ai.svc.cluster.local:8080/"
             - name: SEARXNG_PORT
               value: "8080"
+            - name: SEARXNG_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: searxng-secret
+                  key: SEARXNG_SECRET
+
           volumeMounts:
             - name: config-volume
               mountPath: /etc/searxng/settings.yml
               subPath: settings.yml
+
       volumes:
         - name: config-volume
           configMap:

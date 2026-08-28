@@ -6,12 +6,40 @@ metadata:
     app: searxng
 data:
   settings.yml: |
-    use_default_settings: true
+    use_default_settings:
+      engines:
+        keep_only:
+          - yandex
+          - seznam
+          - fynd
 
-    server:
-      secret_key: "change_this_to_a_random_string"
-      
     search:
+      default_lang: en-US
       formats:
         - html
         - json
+
+    server:
+      limiter: false
+      public_instance: false
+      method: GET
+
+    engines:
+      - name: yandex
+        disabled: false
+        weight: 1.0
+
+      - name: seznam
+        disabled: false
+        weight: 1.0
+
+      - name: fynd
+        disabled: false
+        weight: 0.1
+
+    outgoing:
+      request_timeout: 3.0
+      max_request_timeout: 5.0
+      pool_connections: 30
+      pool_maxsize: 20
+      enable_http2: true

@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: oswald-ai
 resources:
   - config-map.yaml
+  - sealed-secret.yaml
   - deployment.yaml
   - service.yaml
