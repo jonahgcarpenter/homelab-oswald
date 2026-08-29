@@ -6,12 +6,7 @@ metadata:
     app: searxng
 data:
   settings.yml: |
-    use_default_settings:
-      engines:
-        keep_only:
-          - yandex
-          - seznam
-          - fynd
+    use_default_settings: true
 
     search:
       default_lang: en-US
@@ -23,19 +18,6 @@ data:
       limiter: false
       public_instance: false
       method: GET
-
-    engines:
-      - name: yandex
-        disabled: false
-        weight: 1.0
-
-      - name: seznam
-        disabled: false
-        weight: 1.0
-
-      - name: fynd
-        disabled: false
-        weight: 0.1
 
     outgoing:
       request_timeout: 3.0
