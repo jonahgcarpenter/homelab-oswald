@@ -80,6 +80,9 @@ data:
         - Bifrost:
             icon: "https://mintcdn.com/bifrost/qFMmk8bNSnvgFYDI/media/bifrost-logo.png?fit=max&auto=format&n=qFMmk8bNSnvgFYDI&q=85&s=6af701a560aee4103444fa017b226cf0"
             href: https://bifrost.home.jonahsserver.com/
+        - Comfy-UI:
+            icon: comfyui.png
+            href: https://comfy-ui.home.jonahsserver.com/
 
     - Security:
         - Vaultwarden:
