@@ -10,3 +10,4 @@ data:
   HOME_ASSISTANT_LISTEN_PORT: "8000"
   MODEL_CONTEXT_WINDOW: "262144"
   MODEL_MAX_OUTPUT_TOKENS: "8192"
+  COMFYUI_URL: "https://comfy-ui.home.jonahsserver.com"
