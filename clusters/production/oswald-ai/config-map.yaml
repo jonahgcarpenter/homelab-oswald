@@ -3,7 +3,6 @@ kind: ConfigMap
 metadata:
   name: oswald-ai-config
 data:
-  SEARXNG_URL: "http://searxng:8080"
   LLM_GATEWAY_URL: "http://bifrost.bifrost.svc.cluster.local:8080"
   LLM_GATEWAY_MODEL: "llama.cpp-chat/qwen3.8-27b-iq4-xs"
   LLM_GATEWAY_EMBEDDING_MODEL: "llama.cpp-embeddings/nomic-embed-text:v1.5"
