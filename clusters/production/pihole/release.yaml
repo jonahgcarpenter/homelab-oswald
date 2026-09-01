@@ -388,6 +388,7 @@ spec:
         - address=/vaultwarden.home.jonahsserver.com/192.168.4.231
         - address=/bifrost.home.jonahsserver.com/192.168.4.231
         - address=/nestledger.home.jonahsserver.com/192.168.4.231
+        - address=/comfy-ui.home.jonahsserver.com/192.168.4.231
 
       # -- Dnsmasq reads the /etc/hosts file to resolve ips. You can add additional entries if you like
       additionalHostsEntries: []

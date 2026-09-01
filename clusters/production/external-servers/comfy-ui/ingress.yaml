@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: comfy-ui-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`comfy-ui.home.jonahsserver.com`)
+      kind: Rule
+      services:
+        - name: comfy-ui
+          port: 8188
+          scheme: http

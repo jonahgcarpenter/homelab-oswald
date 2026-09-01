@@ -1,0 +1,16 @@
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: comfy-ui-slice
+  labels:
+    kubernetes.io/service-name: comfy-ui
+addressType: IPv4
+ports:
+  - name: http
+    protocol: TCP
+    port: 8188
+endpoints:
+  - addresses:
+      - "192.168.4.55"
+    conditions:
+      ready: true
