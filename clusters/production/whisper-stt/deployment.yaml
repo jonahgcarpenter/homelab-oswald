@@ -20,7 +20,7 @@ spec:
         fsGroup: 1000
       containers:
         - name: whisper-stt
-          image: lscr.io/linuxserver/faster-whisper:3.6.0
+          image: lscr.io/linuxserver/faster-whisper:3.7.0
           securityContext:
             readOnlyRootFilesystem: true
           ports:
