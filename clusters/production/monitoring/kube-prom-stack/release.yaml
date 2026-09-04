@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: monitoring
-      version: "89.2.0"
+      version: "89.2.2"
   values:
     kubeProxy:
       enabled: false
