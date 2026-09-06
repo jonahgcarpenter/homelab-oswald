@@ -48,9 +48,6 @@ spec:
           # Mounting the storage directory
           volumeMounts:
             - name: storage-volume
-              mountPath: /home/oswald-ai/data/memory
-              subPath: memory
-            - name: storage-volume
               mountPath: /home/oswald-ai/data/database
               subPath: database
             # /tmp for Gif support
