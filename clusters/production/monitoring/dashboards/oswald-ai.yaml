@@ -911,6 +911,354 @@ data:
           ]
         },
         {
+          "id": 13,
+          "title": "Average Latency Breakdown",
+          "description": "Selected-range average phase durations for fully completed, successfully executed and delivered prompts. Agent execution includes model calls, tools, and retries. Phases do not include all gateway overhead. These are averages, not stacked percentiles.",
+          "type": "barchart",
+          "pluginVersion": "13.0.1",
+          "datasource": {"type": "loki", "uid": "P8E80F9AEF21F6940"},
+          "gridPos": {"h": 9, "w": 12, "x": 0, "y": 39},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "palette-classic"},
+              "decimals": 1,
+              "unit": "s",
+              "min": 0,
+              "noValue": "No completed prompts",
+              "custom": {
+                "axisPlacement": "auto",
+                "fillOpacity": 100,
+                "lineWidth": 1,
+                "scaleDistribution": {"type": "linear"}
+              }
+            },
+            "overrides": []
+          },
+          "options": {
+            "orientation": "vertical",
+            "barWidth": 0.85,
+            "groupWidth": 0.7,
+            "showValue": "always",
+            "stacking": "none",
+            "xField": "gateway",
+            "legend": {"showLegend": true, "displayMode": "list", "placement": "bottom"},
+            "tooltip": {"mode": "multi", "sort": "desc"}
+          },
+          "targets": [
+            {
+              "refId": "A",
+              "editorMode": "code",
+              "expr": "avg_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"gateway.request.complete\" | request_kind=\"prompt\" | is_admitted=\"true\" | is_execution_complete=\"true\" | execution_status=\"ok\" | delivery_status=\"ok\" | unwrap queue_wait_ms | __error__=\"\" [$__range]) by (gateway) / 1000",
+              "queryType": "instant",
+              "instant": true,
+              "legendFormat": "Queue wait"
+            },
+            {
+              "refId": "B",
+              "editorMode": "code",
+              "expr": "avg_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"gateway.request.complete\" | request_kind=\"prompt\" | is_admitted=\"true\" | is_execution_complete=\"true\" | execution_status=\"ok\" | delivery_status=\"ok\" | unwrap agent_duration_ms | __error__=\"\" [$__range]) by (gateway) / 1000",
+              "queryType": "instant",
+              "instant": true,
+              "legendFormat": "Agent execution"
+            },
+            {
+              "refId": "C",
+              "editorMode": "code",
+              "expr": "avg_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"gateway.request.complete\" | request_kind=\"prompt\" | is_admitted=\"true\" | is_execution_complete=\"true\" | execution_status=\"ok\" | delivery_status=\"ok\" | unwrap delivery_duration_ms | __error__=\"\" [$__range]) by (gateway) / 1000",
+              "queryType": "instant",
+              "instant": true,
+              "legendFormat": "Delivery"
+            }
+          ],
+          "transformations": [
+            {"id": "joinByField", "options": {"mode": "outerTabular", "byField": "gateway"}},
+            {"id": "filterFieldsByName", "options": {"include": {"names": ["gateway", "Value #A", "Value #B", "Value #C"]}}},
+            {
+              "id": "organize",
+              "options": {
+                "indexByName": {"gateway": 0, "Value #A": 1, "Value #B": 2, "Value #C": 3},
+                "renameByName": {"Value #A": "Queue wait", "Value #B": "Agent execution", "Value #C": "Delivery"}
+              }
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "title": "Foreground Streaming First Output",
+          "description": "Fifteen-minute rolling provider time to first thinking/content, per foreground streaming model call. Includes subsequent tool rounds, not just the first call of each prompt. This is not Discord delivery latency. Async calls have no measurement and are excluded, not treated as zero.",
+          "type": "timeseries",
+          "pluginVersion": "13.0.1",
+          "datasource": {"type": "loki", "uid": "P8E80F9AEF21F6940"},
+          "gridPos": {"h": 9, "w": 12, "x": 12, "y": 39},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "palette-classic"},
+              "decimals": 1,
+              "unit": "s",
+              "min": 0,
+              "noValue": "No streaming observations",
+              "custom": {
+                "axisPlacement": "auto",
+                "drawStyle": "line",
+                "fillOpacity": 5,
+                "lineInterpolation": "linear",
+                "lineWidth": 2,
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {"group": "A", "mode": "none"},
+                "scaleDistribution": {"type": "linear"}
+              }
+            },
+            "overrides": []
+          },
+          "options": {
+            "legend": {"calcs": ["lastNotNull", "max"], "showLegend": true, "displayMode": "table", "placement": "bottom"},
+            "tooltip": {"mode": "multi", "sort": "desc"}
+          },
+          "targets": [
+            {
+              "refId": "A",
+              "editorMode": "code",
+              "expr": "avg_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"provider.gateway.chat.complete\" | workload=\"foreground\" | transport=\"streaming\" | time_to_first_output_ms!=\"\" | unwrap time_to_first_output_ms | __error__=\"\" [15m]) by (gateway, model) / 1000",
+              "queryType": "range",
+              "legendFormat": "{{gateway}} / {{model}} average"
+            },
+            {
+              "refId": "B",
+              "editorMode": "code",
+              "expr": "quantile_over_time(0.95, {namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"provider.gateway.chat.complete\" | workload=\"foreground\" | transport=\"streaming\" | time_to_first_output_ms!=\"\" | unwrap time_to_first_output_ms | __error__=\"\" [15m]) by (gateway, model) / 1000",
+              "queryType": "range",
+              "legendFormat": "{{gateway}} / {{model}} p95"
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "title": "Tool Performance",
+          "description": "Selected-range actual tool executions, errors, unproductive results, and handler durations. Blocked calls never execute and are excluded. Unproductive results are not failures. Duration includes failed/canceled executions. Error and unproductive counts are zero-filled only for tools with recorded executions.",
+          "type": "table",
+          "pluginVersion": "13.0.1",
+          "datasource": {"type": "loki", "uid": "P8E80F9AEF21F6940"},
+          "gridPos": {"h": 9, "w": 24, "x": 0, "y": 48},
+          "fieldConfig": {
+            "defaults": {
+              "decimals": 0,
+              "unit": "short",
+              "noValue": "Unknown",
+              "custom": {"align": "auto", "cellOptions": {"type": "auto"}, "inspect": false}
+            },
+            "overrides": [
+              {
+                "matcher": {"id": "byName", "options": "Average Duration"},
+                "properties": [{"id": "unit", "value": "s"}, {"id": "decimals", "value": 3}]
+              },
+              {
+                "matcher": {"id": "byName", "options": "P95 Duration"},
+                "properties": [{"id": "unit", "value": "s"}, {"id": "decimals", "value": 3}]
+              }
+            ]
+          },
+          "options": {
+            "cellHeight": "sm",
+            "showHeader": true,
+            "sortBy": [{"desc": true, "displayName": "Executions"}],
+            "footer": {"show": false, "enablePagination": true}
+          },
+          "targets": [
+            {
+              "refId": "A",
+              "editorMode": "code",
+              "expr": "sum by (tool_name) (count_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"agent.tool.complete\" [$__range]))",
+              "queryType": "instant",
+              "instant": true,
+              "legendFormat": "Executions"
+            },
+            {
+              "refId": "B",
+              "editorMode": "code",
+              "expr": "sum by (tool_name) (count_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"agent.tool.complete\" | status=\"error\" [$__range])) or (0 * sum by (tool_name) (count_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"agent.tool.complete\" [$__range])))",
+              "queryType": "instant",
+              "instant": true,
+              "legendFormat": "Errors"
+            },
+            {
+              "refId": "C",
+              "editorMode": "code",
+              "expr": "sum by (tool_name) (count_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"agent.tool.complete\" | outcome=\"unproductive\" [$__range])) or (0 * sum by (tool_name) (count_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"agent.tool.complete\" [$__range])))",
+              "queryType": "instant",
+              "instant": true,
+              "legendFormat": "Unproductive"
+            },
+            {
+              "refId": "D",
+              "editorMode": "code",
+              "expr": "avg_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"agent.tool.complete\" | unwrap duration_ms | __error__=\"\" [$__range]) by (tool_name) / 1000",
+              "queryType": "instant",
+              "instant": true,
+              "legendFormat": "Average Duration"
+            },
+            {
+              "refId": "E",
+              "editorMode": "code",
+              "expr": "quantile_over_time(0.95, {namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"agent.tool.complete\" | unwrap duration_ms | __error__=\"\" [$__range]) by (tool_name) / 1000",
+              "queryType": "instant",
+              "instant": true,
+              "legendFormat": "P95 Duration"
+            }
+          ],
+          "transformations": [
+            {"id": "joinByField", "options": {"mode": "outerTabular", "byField": "tool_name"}},
+            {"id": "filterFieldsByName", "options": {"include": {"names": ["tool_name", "Value #A", "Value #B", "Value #C", "Value #D", "Value #E"]}}},
+            {
+              "id": "organize",
+              "options": {
+                "indexByName": {"tool_name": 0, "Value #A": 1, "Value #B": 2, "Value #C": 3, "Value #D": 4, "Value #E": 5},
+                "renameByName": {"tool_name": "Tool", "Value #A": "Executions", "Value #B": "Errors", "Value #C": "Unproductive", "Value #D": "Average Duration", "Value #E": "P95 Duration"}
+              }
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "title": "Search Index Availability",
+          "description": "Latest per-instance availability snapshot within five minutes of the selected range end. Unknown is not healthy. Vector indexes are omitted when embeddings are disabled. A snapshot can remain stale within the lookback; degraded means missing or requiring rebuild, not necessarily total loss of fallback retrieval.",
+          "type": "stat",
+          "pluginVersion": "13.0.1",
+          "datasource": {"type": "loki", "uid": "P8E80F9AEF21F6940"},
+          "gridPos": {"h": 5, "w": 24, "x": 0, "y": 57},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "thresholds"},
+              "decimals": 0,
+              "unit": "none",
+              "noValue": "Unknown",
+              "thresholds": {"mode": "absolute", "steps": [{"color": "red", "value": null}, {"color": "green", "value": 1}]},
+              "mappings": [
+                {"type": "value", "options": {"0": {"text": "Degraded", "color": "red", "index": 0}, "1": {"text": "Available", "color": "green", "index": 1}}},
+                {"type": "special", "options": {"match": "null", "result": {"text": "Unknown", "color": "gray"}}}
+              ]
+            },
+            "overrides": [
+              {"matcher": {"id": "byName", "options": "memory_fts"}, "properties": [{"id": "displayName", "value": "User Memory Text"}]},
+              {"matcher": {"id": "byName", "options": "transcript_fts"}, "properties": [{"id": "displayName", "value": "Transcripts"}]},
+              {"matcher": {"id": "byName", "options": "global_memory_fts"}, "properties": [{"id": "displayName", "value": "Global Memory Text"}]},
+              {"matcher": {"id": "byName", "options": "memory_vector"}, "properties": [{"id": "displayName", "value": "User Memory Vector"}]},
+              {"matcher": {"id": "byName", "options": "global_memory_vector"}, "properties": [{"id": "displayName", "value": "Global Memory Vector"}]}
+            ]
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "horizontal",
+            "textMode": "value_and_name",
+            "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+          },
+          "targets": [
+            {
+              "refId": "A",
+              "editorMode": "code",
+              "expr": "last_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"index.availability\" | is_available=~\"true|false\" | label_format index_available=`{{ if eq .is_available \"true\" }}1{{ else }}0{{ end }}` | unwrap index_available | __error__=\"\" [5m]) by (index_kind, instance_id)",
+              "queryType": "instant",
+              "instant": true,
+              "legendFormat": "{{index_kind}}"
+            }
+          ],
+          "transformations": [
+            {"id": "rowsToFields", "options": {"mappings": [{"fieldName": "index_kind", "handlerKey": "field.name"}, {"fieldName": "Value #A", "handlerKey": "field.value"}]}}
+          ]
+        },
+        {
+          "id": 17,
+          "title": "Dead Background Jobs",
+          "description": "Latest retained dead-job counts within five minutes of the selected range end, not new failures per minute. Nonzero counts need investigation. Per-instance snapshots are not summed across processes sharing a database. Missing telemetry is unknown, not zero.",
+          "type": "stat",
+          "pluginVersion": "13.0.1",
+          "datasource": {"type": "loki", "uid": "P8E80F9AEF21F6940"},
+          "gridPos": {"h": 5, "w": 12, "x": 0, "y": 62},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "thresholds"},
+              "decimals": 0,
+              "unit": "short",
+              "noValue": "Unknown",
+              "thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}, {"color": "red", "value": 1}]},
+              "mappings": [{"type": "special", "options": {"match": "null", "result": {"text": "Unknown", "color": "gray"}}}]
+            },
+            "overrides": [
+              {"matcher": {"id": "byName", "options": "memory_formation"}, "properties": [{"id": "displayName", "value": "Memory Formation"}]},
+              {"matcher": {"id": "byName", "options": "session_compaction"}, "properties": [{"id": "displayName", "value": "Compaction"}]},
+              {"matcher": {"id": "byName", "options": "derived_index"}, "properties": [{"id": "displayName", "value": "Indexing"}]}
+            ]
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "horizontal",
+            "textMode": "value_and_name",
+            "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+          },
+          "targets": [
+            {
+              "refId": "A",
+              "editorMode": "code",
+              "expr": "last_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"memory.jobs.health\" | unwrap dead_count | __error__=\"\" [5m]) by (job_kind, instance_id)",
+              "queryType": "instant",
+              "instant": true,
+              "legendFormat": "{{job_kind}}"
+            }
+          ],
+          "transformations": [
+            {"id": "rowsToFields", "options": {"mappings": [{"fieldName": "job_kind", "handlerKey": "field.name"}, {"fieldName": "Value #A", "handlerKey": "field.value"}]}}
+          ]
+        },
+        {
+          "id": 18,
+          "title": "Expired Background Leases",
+          "description": "Latest running jobs with expired worker leases within five minutes of the selected range end. These jobs are already included in active counts. Nonzero values can indicate interrupted work; missing telemetry is unknown, not zero. Per-instance database gauges are not summed.",
+          "type": "stat",
+          "pluginVersion": "13.0.1",
+          "datasource": {"type": "loki", "uid": "P8E80F9AEF21F6940"},
+          "gridPos": {"h": 5, "w": 12, "x": 12, "y": 62},
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "thresholds"},
+              "decimals": 0,
+              "unit": "short",
+              "noValue": "Unknown",
+              "thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}, {"color": "orange", "value": 1}]},
+              "mappings": [{"type": "special", "options": {"match": "null", "result": {"text": "Unknown", "color": "gray"}}}]
+            },
+            "overrides": [
+              {"matcher": {"id": "byName", "options": "memory_formation"}, "properties": [{"id": "displayName", "value": "Memory Formation"}]},
+              {"matcher": {"id": "byName", "options": "session_compaction"}, "properties": [{"id": "displayName", "value": "Compaction"}]},
+              {"matcher": {"id": "byName", "options": "derived_index"}, "properties": [{"id": "displayName", "value": "Indexing"}]}
+            ]
+          },
+          "options": {
+            "colorMode": "background",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "horizontal",
+            "textMode": "value_and_name",
+            "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}
+          },
+          "targets": [
+            {
+              "refId": "A",
+              "editorMode": "code",
+              "expr": "last_over_time({namespace=\"oswald-ai\",service_name=\"oswald-ai\"} | json | __error__=\"\" | log_schema_version=\"1\" | event=\"memory.jobs.health\" | unwrap expired_lease_count | __error__=\"\" [5m]) by (job_kind, instance_id)",
+              "queryType": "instant",
+              "instant": true,
+              "legendFormat": "{{job_kind}}"
+            }
+          ],
+          "transformations": [
+            {"id": "rowsToFields", "options": {"mappings": [{"fieldName": "job_kind", "handlerKey": "field.name"}, {"fieldName": "Value #A", "handlerKey": "field.value"}]}}
+          ]
+        },
+        {
           "id": 5,
           "title": "Application Logs",
           "description": "Current-schema application JSON logs. Configure the collector to ingest stderr only: stdout may contain bootstrap secrets. Dashboard filtering does not remove previously ingested secrets from Loki.",
@@ -924,7 +1272,7 @@ data:
             "h": 17,
             "w": 24,
             "x": 0,
-            "y": 39
+            "y": 67
           },
           "options": {
             "dedupStrategy": "none",
@@ -981,6 +1329,6 @@ data:
         "golang",
         "loki"
       ],
-      "version": 5,
+      "version": 6,
       "uid": "osj7r4p"
     }
